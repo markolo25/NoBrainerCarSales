@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <title>NBCS</title>
+        <meta charset="utf-8" />
+        <h:outputStylesheet name="css/master.css"/>
+    </h:head>
+
+    <h:body>
+
+        <h1>Submit an Auto Request</h1>
+
+        <p class="italic">
+            As a Buyer, I want to submit a request for a vehicle, so that I
+            get a response from sellers.
+        </p>
+
+        <form method="post" action="AutoRequestServlet">
+                <h3>Make</h3>
+                <p>
+                    <select name="make" required="true">
+                        <option value="">--</option>
+                        <option value="Honda">Honda</option>
+                        <option value="Toyota">Toyota</option>
+                        <option value="Ford">Ford</option>
+                    </select>
+                </p>
+                <h3>Model</h3>
+                <p>
+                    <select name="model" required="true">
+                        <option value="">--</option>
+                        <option value="Civic">Civic</option>
+                        <option value="Prius">Prius</option>
+                        <option value="Focus">Focus</option>
+                    </select>
+                </p>
+                <h3>Year</h3>
+                <p>
+                    <select name="year" required="true">
+                        <option value="">--</option>
+                        <option value="1999">1999</option>
+                        <option value="2003">2003</option>
+                        <option value="2017">2017</option>
+                    </select>
+                </p>
+                <h3>Title Status</h3>
+                <p>
+                    <select name="titleStatus" required="true">
+                        <option value="">--</option>
+                        <option value="Clean">Clean</option>
+                        <option value="Salvage">Salvage</option>
+                    </select>
+                </p>
+                <button type="submit">Submit</button>
+        </form>
+
+    </h:body>
+
+</html>
