@@ -1,2 +1,3 @@
-NBCS/AutoRequest.class
-NBCS/AutoRequestServlet.class
+NBCS/Request.class
+NBCS/RequestList.class
+NBCS/InsertRequestServlet.class

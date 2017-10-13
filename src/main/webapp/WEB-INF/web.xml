@@ -10,16 +10,16 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet>
-        <servlet-name>AutoRequestServlet</servlet-name>
-        <servlet-class>NBCS.AutoRequestServlet</servlet-class>
+        <servlet-name>InsertRequestServlet</servlet-name>
+        <servlet-class>NBCS.InsertRequestServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AutoRequestServlet</servlet-name>
-        <url-pattern>/AutoRequestServlet</url-pattern>
+        <servlet-name>InsertRequestServlet</servlet-name>
+        <url-pattern>/InsertRequestServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
