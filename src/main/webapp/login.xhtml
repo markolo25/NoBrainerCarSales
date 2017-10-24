@@ -16,10 +16,34 @@
     <h:body>
 
         <div class="container">
-            <a href="request.xhtml">Requests</a>
-            <a href="login.xhtml">Login</a>
 
-            
+            <div class="card">
+                <div class="card-header">Login to NBCS</div>
+                <div class="card-body">
+                    <p class="card-text">
+                        <em>
+                            As a User, I want to sign in to NBCS, so that I can access my dashboard.
+                        </em>
+                    </p>
+
+                    <form action="LoginServlet" method="POST">
+                        <div class = "form-group">
+                            <label for="userName">UserName</label>
+                            <input type="text" class="form-control" id="userName"/>
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password"/>
+                        </div>
+
+                        <button class="btn btn-primary" type="submit">Log In</button>
+
+                    </form>
+
+
+
+
+                </div>
+
+            </div>
 
         </div>
 

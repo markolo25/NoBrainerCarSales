@@ -58,7 +58,7 @@ public class InsertRequestServlet extends HttpServlet {
             this.request.setMilage(milage);
             this.autoRequest.addRequest(this.request);
             this.autoRequest.printRequests();
-            response.sendRedirect("index.xhtml");
+            response.sendRedirect("request.xhtml");
         }
     }
 
