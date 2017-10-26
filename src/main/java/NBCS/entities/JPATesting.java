@@ -15,7 +15,7 @@ import NBCS.entities.RequestEntity;
  *
  * @author AnthonyLopez
  */
-public class jpaTesting {
+public class JPATesting {
     
     // Create the EntityManager
     // sportsPU is a Persistence Unit as defined in persistence.xml that is
@@ -29,7 +29,7 @@ public class jpaTesting {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        jpaTesting n = new jpaTesting();
+        JPATesting n = new JPATesting();
         n.loadDatabase();
     }
     
