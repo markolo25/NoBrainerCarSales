@@ -13,7 +13,7 @@ import NBCS.entities.RequestEntity;
 
 /**
  *
- * @author AnthonyLopez
+ * @author Anthony Lopez <Anthony.Lopez@student.csulb.edu>
  */
 public class JPATesting {
     

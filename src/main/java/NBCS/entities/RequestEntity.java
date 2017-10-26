@@ -15,7 +15,7 @@ import java.util.Date;
 
 /**
  *
- * @author AnthonyLopez
+ * @author Anthony Lopez <Anthony.Lopez@student.csulb.edu>
  */
 @Entity
 public class RequestEntity implements Serializable {
