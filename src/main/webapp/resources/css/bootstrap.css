@@ -117,7 +117,6 @@ article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, s
 }
 
 body {
-  padding-top: 70px;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 1rem;
@@ -126,6 +125,11 @@ body {
   color: #212529;
   text-align: left;
   background-color: #fff;
+}
+
+.fixed-navbar-padding {
+    padding-top: 70px;
+    padding-bottom: 20px;
 }
 
 [tabindex="-1"]:focus {
