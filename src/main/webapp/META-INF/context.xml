@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/NBCS">
+    <!--Prof.Monge: Use the LockOutRealm to prevent attempts to guess user passwords
+    via a brute-force attack -->
+    <Realm className="org.apache.catalina.realm.LockOutRealm">
+        <!-- Prof:Monge: Realm uses a DataSource which should be defined in /conf/tomee.xml -->
+        <Realm className="org.apache.catalina.realm.DataSourceRealm" dataSourceName="jdbc/carstoreDB" userCredCol="password" userNameCol="email" userTable="users">
+            <!-- Prof.Monge: see: https://stackoverflow.com/questions/32178822/tomcat-understanding-credentialhandler -->
+            <CredentialHandler algorithm="SHA-512" className="org.apache.catalina.realm.MessageDigestCredentialHandler"/>
+        </Realm>   
+    </Realm>
+</Context>
+
