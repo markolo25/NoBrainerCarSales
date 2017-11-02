@@ -5,7 +5,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:body>
-        <ui:composition template="/WEB-INF/templates/layout.xhtml">
+        <ui:composition template="/layout.xhtml">
             <ui:define name="title">Register as a user for NBCS</ui:define>
             <ui:define name="content">
                 <p>Register as a user of the site to be granted additional functionality.</p>
@@ -21,10 +21,27 @@
                                 <h:message for="fname" styleClass="message_all" />
                             </li>
                             <li>
+                                <label for="mInitial">Middle Initial</label>
+                                <h:inputText id="mInitial" value="#{registration.newUser.mInitial}"/>
+                                <h:message for="mInitial" styleClass="message_all" />
+                            </li>
+                            <li>
                                 <label for="lname">Last Name</label>
                                 <h:inputText id="lname" value="#{registration.newUser.lastName}"
                                              required="true"  requiredMessage="Your last name is required"/>
                                 <h:message for="lname" styleClass="message_all" />
+                            </li>
+                            <li>
+                                <label for="zipCode">Zip Code</label>
+                                <h:inputText id="zipCode" value="#{registration.newUser.zipCode}"
+                                             required="true" requiredMessage="Your Zip Code is required"/>
+                                <h:message for="zipCode" styleClass="message_all" />
+                            </li>
+                            <li>
+                                <label for="screenName">Screen Name</label>
+                                <h:inputText id="screenName" value="#{registration.newUser.screenName}" required ="true"
+                                requiredMessage="Your Screen Name is required" />
+                                <h:message for="screenName" styleClass ="message_all" />
                             </li>
                             <li>
                                 <label for="email">Email Address</label>
@@ -33,24 +50,12 @@
                                              validator="#{basicValidator.validateEmail}" />
                                 <h:message for="email" styleClass="message_all" />
                             </li>
-<!--                            <li>
-                                <label for="birthdate">Date of birth [MM-dd-yyyy]</label>
-                                <h:inputText id="birthDate" value="#{registration.newUser.birthDate}" required="false">
-                                    <f:convertDateTime pattern="MM-dd-yyyy"/>
-                                </h:inputText>                            
-                            </li>-->
-                            <li>
-                                <label for="screenName">Screen Name</label>
-                                <h:inputText id="screenName" value="#{registration.newUser.screenName}" required ="true"
-                                requiredMessage="Your Screen Name is required" />
-                                <h:message for="screenName" styleClass ="message_all" />
-                            </li>
                             <li>
 <!--                                Should be one for numberical values. Like Phone numbers as done in dates-->
-                                <label for="phoneNumber">Phone Number</label>
-                                <h:inputText id="phoneNumber" value="#{registration.newUser.phoneNumber}" required ="true"
+                                <label for="phone">Phone Number</label>
+                                <h:inputText id="phone" value="#{registration.newUser.phone}" required ="true"
                                 requiredMessage="Your Phone Number is required" />
-                                <h:message for="phoneNumber" styleClass ="message_all" />
+                                <h:message for="phone" styleClass ="message_all" />
                             </li>
                         </ul>
                         <fieldset>
@@ -65,7 +70,7 @@
                                     <label for="passwordConfirmation">Confirm password</label>
                                     <h:inputSecret id="passwordConfirmation" value="#{registration.passwordConfirmation}"
                                                    required="true"  requiredMessage="You need to confirm your password">
-                                        <f:validator validatorId="duplicateFieldValidator" />
+                                        <!--<f:validator validatorId="duplicateFieldValidator" />-->
                                         <f:attribute name="field1" value="registration:password" />
                                         <f:attribute name="fieldNames" value="Passwords" />
                                     </h:inputSecret>
