@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition  template="/WEB-INF/templates/layout.xhtml">
+        <ui:define name="title">Add Car</ui:define>
+        <ui:define name="nav-headings">
+            <li class="nav-item">
+                <a class="nav-link" href="index.xhtml">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="login.xhtml">Sign In</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="request.xhtml">Submit Request</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="addCar.xhtml">Add Car To Inventory<span class="sr-only">(current)</span></a>
+            </li>
+        </ui:define>
+        <ui:define name="content">
+            <div class="card">
+                <div class="card-header">Add a Car</div>
+                <div class="card-body">
+                    <p class="card-text">
+                        <em>
+                            As a Seller, I want to add a car to my inventory,
+                            so that I can pin a car from my inventory to a request.
+                        </em>
+                    </p>
+                    <h:form>
+                        <div class="form-group">
+                            <label for="vin">VIN (Optional)</label>
+                            <h:inputText class="form-control" id="vin" value="#{addCarBean.testVin}" required="false" aria-describedby="vinHelp"/>
+                            <small id="vinHelp" class="form-text text-muted">We use this to make this process easier. You car's VIN will not be disclosed to anyone.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="year">Year</label>
+                                <h:selectOneMenu class="form-control" id="year" value="#{addCarBean.testYear}" converter="javax.faces.Integer">
+                                    <f:selectItems value="#{addCarBean.yearChoices}"/>
+                                </h:selectOneMenu>
+                        </div>
+                        <div class="form-group">
+                            <label for="make">Make</label>
+                                <h:selectOneMenu class="form-control" id="make" value="#{addCarBean.testMake}">
+                                    <f:selectItems value="#{addCarBean.carSelections.makes}"/>
+                                </h:selectOneMenu>
+                        </div>
+                        <h:commandButton class="btn btn-primary" action="#{addCarBean.doAddCar}" value="Add Car To Inventory"/>
+                    </h:form>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>
