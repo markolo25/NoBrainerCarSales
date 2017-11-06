@@ -30,7 +30,7 @@
                 <h:form>
                     <div class="form-group">
                         <label for="make">Make</label>
-                        <h:selectOneMenu class="form-control" id="make" value="#{reverseCarStoreBean.newRequest.make}" required="true" requiredMessage="You must select a make.">
+                        <h:selectOneMenu class="form-control" id="make" value="#{requestBean.newRequest.make}" required="true" requiredMessage="You must select a make.">
                             <f:selectItem itemValue="Any" itemLabel="Any"/>
                             <f:selectItem itemValue="Honda" itemLabel="Honda"/>
                             <f:selectItem itemValue="Toyota" itemLabel="Toyota"/>
@@ -39,7 +39,7 @@
                     </div>
                     <div class="form-group">
                         <label for="model">Model</label>
-                        <h:selectOneMenu class="form-control" id="model" value="#{reverseCarStoreBean.newRequest.model}" required="true" requiredMessage="You must select a model.">
+                        <h:selectOneMenu class="form-control" id="model" value="#{requestBean.newRequest.model}" required="true" requiredMessage="You must select a model.">
                             <f:selectItem itemValue="Any" itemLabel="Any"/>
                             <f:selectItem itemValue="Civic" itemLabel="Civic"/>
                             <f:selectItem itemValue="Prius" itemLabel="Prius"/>
@@ -50,7 +50,7 @@
                         <div class="row">
                             <div class="col">
                                 <label for="yearFrom">Year From</label>
-                                <h:selectOneMenu class="form-control" id="yearFrom" value="#{reverseCarStoreBean.newRequest.yearFrom}" converter="javax.faces.Integer">
+                                <h:selectOneMenu class="form-control" id="yearFrom" value="#{requestBean.newRequest.yearFrom}" converter="javax.faces.Integer">
                                     <f:selectItem itemValue="1980" itemLabel="1980"/>
                                     <f:selectItem itemValue="1990" itemLabel="1990"/>
                                     <f:selectItem itemValue="2000" itemLabel="2000"/>
@@ -59,7 +59,7 @@
                             </div>
                             <div class="col">
                                 <label for="yearTo">Year To</label>
-                                <h:selectOneMenu class="form-control" id="yearTo" value="#{reverseCarStoreBean.newRequest.yearTo}" converter="javax.faces.Integer">
+                                <h:selectOneMenu class="form-control" id="yearTo" value="#{requestBean.newRequest.yearTo}" converter="javax.faces.Integer">
                                     <f:selectItem itemValue="1980" itemLabel="1980"/>
                                     <f:selectItem itemValue="1990" itemLabel="1990"/>
                                     <f:selectItem itemValue="2000" itemLabel="2000"/>
@@ -72,7 +72,7 @@
                         <div class="row">
                             <div class="col">
                                 <label for="priceLow">Price Minimum</label>
-                                <h:selectOneMenu class="form-control" id="priceLow" value="#{reverseCarStoreBean.newRequest.priceLow}" converter="javax.faces.Double">
+                                <h:selectOneMenu class="form-control" id="priceLow" value="#{requestBean.newRequest.priceLow}" converter="javax.faces.Double">
                                     <f:selectItem itemValue="0.00" itemLabel="Any Price"/>
                                     <f:selectItem itemValue="1000.00" itemLabel="$1000"/>
                                     <f:selectItem itemValue="2000.00" itemLabel="$2000"/>
@@ -81,7 +81,7 @@
                             </div>
                             <div class="col">
                                 <label for="priceHigh">Price Maximum</label>
-                                <h:selectOneMenu class="form-control" id="priceHigh" value="#{reverseCarStoreBean.newRequest.priceHigh}" converter="javax.faces.Double">
+                                <h:selectOneMenu class="form-control" id="priceHigh" value="#{requestBean.newRequest.priceHigh}" converter="javax.faces.Double">
                                     <f:selectItem itemValue="0.00" itemLabel="Any Price"/>
                                     <f:selectItem itemValue="1000.00" itemLabel="$1000"/>
                                     <f:selectItem itemValue="2000.00" itemLabel="$2000"/>
@@ -92,7 +92,7 @@
                     </div>
                     <div class="form-group">
                         <label for="rangeFromLocation">Vehicle Within</label>
-                        <h:selectOneMenu class="form-control" id="rangeFromLocation" value="#{reverseCarStoreBean.newRequest.rangeFromLocation}" converter="javax.faces.Integer">
+                        <h:selectOneMenu class="form-control" id="rangeFromLocation" value="#{requestBean.newRequest.rangeFromLocation}" converter="javax.faces.Integer">
                             <f:selectItem itemValue="5" itemLabel="5 Miles"/>
                             <f:selectItem itemValue="10" itemLabel="10 Miiles"/>
                             <f:selectItem itemValue="15" itemLabel="20 Miles"/>
@@ -101,7 +101,7 @@
                     </div>
                     <div class="form-group">
                         <label for="titleStatus">Title Status</label>
-                        <h:selectOneMenu class="form-control" id="titleStatus" value="#{reverseCarStoreBean.newRequest.titleStatus}">
+                        <h:selectOneMenu class="form-control" id="titleStatus" value="#{requestBean.newRequest.titleStatus}">
                             <f:selectItem itemValue="Any" itemLabel="Any"/>
                             <f:selectItem itemValue="Clean" itemLabel="Clean Title"/>
                             <f:selectItem itemValue="Salvage" itemLabel="Salvage Title"/>
@@ -109,7 +109,7 @@
                     </div>
                     <div class="form-group">
                         <label for="milage">Milage</label>
-                        <h:selectOneMenu class="form-control" id="milage" value="#{reverseCarStoreBean.newRequest.milage}" converter="javax.faces.Integer">
+                        <h:selectOneMenu class="form-control" id="milage" value="#{requestBean.newRequest.milage}" converter="javax.faces.Integer">
                             <f:selectItem itemValue="0" itemLabel="Any"/>
                             <f:selectItem itemValue="10000" itemLabel="Under 10,000 Miles"/>
                             <f:selectItem itemValue="20000" itemLabel="Under 20,000 Miles"/>
@@ -118,11 +118,11 @@
                     </div>
                     <div class="form-group">
                         <label for="timeout">Timeout</label>
-                        <h:selectOneMenu class="form-control" id="timeout" value="#{reverseCarStoreBean.newRequest.timeout}" converter="localDateFacesConverter">
+                        <h:selectOneMenu class="form-control" id="timeout" value="#{requestBean.newRequest.timeout}" converter="localDateFacesConverter">
                             <f:selectItems value="#{requestBean.timeoutChoices}"/>
                         </h:selectOneMenu>
                     </div>
-                    <h:commandButton class="btn btn-primary" action="#{reverseCarStoreBean.doCreateRequest}" value="Submit Request"/>
+                    <h:commandButton class="btn btn-primary" action="#{requestBean.doCreateRequest}" value="Submit Request"/>
                 </h:form>
             </div>
 
