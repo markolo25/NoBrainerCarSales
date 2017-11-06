@@ -6,6 +6,7 @@
 package NBCS.TestingClasses;
 
 import NBCS.EntityClasses.Request;
+import NBCS.ReverseCarStoreBean;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -33,11 +34,11 @@ public class JPATesting {
     private void testPersistRequest() {
         // An EntityManager object is used to perform persistence tasks such as
         // starting transactions, persisting objects, creating queries, etc.
+        ReverseCarStoreBean test = new ReverseCarStoreBean();
         ENTITY_MANAGER.getTransaction().begin();
         Request request = new Request();
-        request.setMake("PERSISTANCETEST");
-        request.setModel("PERSISTANCETEST");
-        ENTITY_MANAGER.persist(request);
+        test.setNewRequest(request);
+        test.doCreateRequest();
         ENTITY_MANAGER.getTransaction().commit();
     }
 }

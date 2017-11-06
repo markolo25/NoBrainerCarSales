@@ -20,6 +20,13 @@ public class ReverseCarStore {
    @PersistenceContext(unitName = "csulb.cecs493_NBCS_war_1.0-SNAPSHOTPU")
    private EntityManager em;
    
+   /**
+    * Creates a request to be added to the buyer's list
+    * 
+    * @param request the request to be added to the database
+    * 
+    * @return request object
+    */
    public Request createRequest(Request request) {
       // TODO: Check if a request is valid
       em.persist(request);

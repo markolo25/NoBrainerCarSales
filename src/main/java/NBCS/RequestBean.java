@@ -47,9 +47,4 @@ public class RequestBean {
         return timeoutChoices;
     }
 
-    // To-do: Integrate with EJB to persist the request
-    public void doCreateRequest(){
-        System.out.println(this.newRequest);
-    }
-
 }
