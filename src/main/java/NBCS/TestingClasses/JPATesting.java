@@ -12,7 +12,9 @@ import javax.persistence.Persistence;
 
 /**
  *
- * @author Anthony Lopez, Xavier Martinez
+ * @author Anthony Lopez <anthony.lopez@student.csulb.edu>
+ * @author Xavier Martinez <xavier.martinez@student.csulb.edu>
+ * @author Chanon Chantaduly <chanon.chantaduly@student.csulb.edu>
  */
 public class JPATesting {
 
@@ -33,11 +35,7 @@ public class JPATesting {
     private void testPersistRequest() {
         // An EntityManager object is used to perform persistence tasks such as
         // starting transactions, persisting objects, creating queries, etc.
-        ENTITY_MANAGER.getTransaction().begin();
-        Request request = new Request();
-        request.setMake("PERSISTANCETEST");
-        request.setModel("PERSISTANCETEST");
-        ENTITY_MANAGER.persist(request);
-        ENTITY_MANAGER.getTransaction().commit();
+//        ENTITY_MANAGER.getTransaction().begin();
+//        ENTITY_MANAGER.getTransaction().commit();
     }
 }
