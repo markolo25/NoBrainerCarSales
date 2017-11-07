@@ -15,6 +15,10 @@
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
     <!---Servlets End Here -->
+    <context-param>
+        <param-name>javax.faces.WEBAPP_RESOURCES_DIRECTORY</param-name> <!-- SEE: https://jsflive.wordpress.com/2013/04/01/jsf22-config-resource-dir/ -->
+        <param-value>/WEB-INF/resources</param-value>
+    </context-param>
     <session-config>
         <session-timeout>
             30
