@@ -5,9 +5,6 @@
  */
 package NBCS;
 
-import java.time.LocalDate;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 
@@ -24,12 +21,22 @@ public class AddCarBean {
 //    private UserBean seller;
     private String testVin;
     private String testMake;
+    private String testModel;
+    private String modelsDisabled;
+
+    public String getTestModel() {
+        return testModel;
+    }
+
+    public void setTestModel(String testModel) {
+        this.testModel = testModel;
+    }
 
     public void setTestMake(String testMake) {
         this.testMake = testMake;
     }
     private Integer testYear;
-    private Map<String,Integer> yearChoices;
+
     private CarSelections carSelections;
 
     /**
@@ -37,19 +44,29 @@ public class AddCarBean {
      */
     public AddCarBean() {
 //        this.car = new Car();
-        this.yearChoices = new LinkedHashMap<>();
-        for (int i = 1980; i <= LocalDate.now().getYear(); i++){
-            this.yearChoices.put(String.valueOf(i), i);
-        }
         this.carSelections = new CarSelections();
+        this.modelsDisabled = "true";
+    }
+
+    public String getModelsDisabled() {
+        return modelsDisabled;
+    }
+
+    public void setModelsDisabled(String modelsDisabled) {
+        this.modelsDisabled = modelsDisabled;
+    }
+
+    public void updateYearsMakesModelsFromVIN() {
+        this.carSelections.setYearsMakesModelsByVIN(this.testVin);
+    }
+
+    public void makeChangeListener(){
+        this.carSelections.setModelsByYearAndMake(String.valueOf(this.testYear), testMake);
+        this.modelsDisabled = "false";
     }
 
     public CarSelections getCarSelections() {
         return carSelections;
-    }
-
-    public void setCarSelections(CarSelections carSelections) {
-        this.carSelections = carSelections;
     }
 
     public Integer getTestYear() {
@@ -69,18 +86,11 @@ public class AddCarBean {
     }
 
     public void doAddCar() {
-        this.carSelections = new CarSelections();
-        System.out.println("VIN: " + this.testVin + " Year: " + this.testYear + " Make: " + this.testMake);
-        this.carSelections.setModels(String.valueOf(this.testYear), this.testMake);
-        System.out.println(this.carSelections.getModels());
+        System.out.println("VIN: " + this.testVin + " Year: " + this.testYear + " Make: " + this.testMake + " Model: " + this.testModel);
     }
 
     public String getTestMake() {
         return testMake;
-    }
-
-    public Map<String, Integer> getYearChoices() {
-        return yearChoices;
     }
 
 }
