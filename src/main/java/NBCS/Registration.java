@@ -11,6 +11,7 @@ package NBCS;
  * Test File Following Monge's example.
  */
 
+import NBCS.EntityClasses.ReverseCarStore;
 import NBCS.EntityClasses.User;
 import java.io.Serializable;
 import javax.ejb.EJB;
@@ -25,8 +26,8 @@ import javax.inject.Named;
 public class Registration implements Serializable{
     
     private User newUser;
-    //@EJB
-    //private NBCS nbcs;
+    @EJB
+    private ReverseCarStore reverseCarStore;
     
     private String passwordConfirmation;
     
@@ -35,21 +36,22 @@ public class Registration implements Serializable{
     }
     
     
-//    public String registerUser(){
-//        String result = "failure";
-//        if(newUser.isInformationValid(newUser.getPassword()));
-//        //^Supposed to look for User password unsure how to implement this.
-//        try{
-//            //reversecarstore.registerUser(newUser, "nbcs.user");?
-//            //nbcs.registerUser(newUser, "nbcs.user");
-//            result ="success";
-//            //needs ejb
-//        }
-//        catch(Exception e){
-//            result ="failure";
-//        }
-//        return result;
-//    }
+    public String registerUser(){
+        String result = "failure";
+        if(newUser.isInformationValid(passwordConfirmation));
+        String clearText = newUser.getPassword();
+        newUser.setPassword(newUser.getPassword());
+        //^No Security or hashing yet
+        //^Supposed to look for User password unsure how to implement this.
+        try{
+            reverseCarStore.registerUser(newUser, "reverseCarStore.user");
+            result ="success";
+        }
+        catch(Exception e){
+            result ="failure";
+        }
+        return result;
+    }
     
     public User getNewUser(){
         return newUser;
