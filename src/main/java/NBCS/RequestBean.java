@@ -6,20 +6,26 @@
 package NBCS;
 
 import NBCS.EntityClasses.Request;
+import NBCS.EntityClasses.ReverseCarStore;
 import java.time.LocalDate;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 
 /**
  *
  * @author Xavier Martinez <xavier.martinez@student.csulb.edu>
+ * @author Chaon Chantaduly <chanon.chantaduly@student.csulb.edu>
  */
+
 @Named(value = "requestBean")
 @RequestScoped
 public class RequestBean {
-
+   
+    @EJB
+    private ReverseCarStore reverseCarStore;
     private Request newRequest;
     private Map<String,LocalDate> timeoutChoices;
 
@@ -46,10 +52,11 @@ public class RequestBean {
     public Map<String, LocalDate> getTimeoutChoices() {
         return timeoutChoices;
     }
-
-    // To-do: Integrate with EJB to persist the request
-    public void doCreateRequest(){
-        System.out.println(this.newRequest);
-    }
-
+    
+    public void doCreateRequest() {
+      newRequest = reverseCarStore.createRequest(newRequest);
+         if (newRequest != null) {
+            System.out.println("Successfully created a request.");
+         }
+   }
 }
