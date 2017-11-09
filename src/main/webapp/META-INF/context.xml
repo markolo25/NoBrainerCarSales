@@ -3,5 +3,5 @@
     <Realm className="org.apache.catalina.realm.DataSourceRealm" dataSourceName="jdbc/carstoreDB" userCredCol="password" userNameCol="email" userTable="users">
     <!-- see: https://stackoverflow.com/questions/32178822/tomcat-understanding-credentialhandler -->
     <!-- <CredentialHandler algorithm="SHA-512" className="org.apache.catalina.realm.MessageDigestCredentialHandler"/> -->
-  </Realm>s
+  </Realm>
 </Context>
