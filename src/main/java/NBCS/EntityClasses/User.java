@@ -105,7 +105,7 @@ public class User implements Serializable {
     }
     
     public String getPassword() {
-        return phone;
+        return password;
     }
     
     public void setPassword(String password) {
