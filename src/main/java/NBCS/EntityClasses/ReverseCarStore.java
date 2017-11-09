@@ -32,4 +32,8 @@ public class ReverseCarStore {
       em.persist(request);
       return request;
    }
+   
+    public User find(String userName) {
+        return em.find(User.class, userName);
+    }
 }
