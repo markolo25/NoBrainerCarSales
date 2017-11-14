@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -44,8 +45,7 @@ public class User implements Serializable {
     @Column (unique = true)
     private String screenName;
     private String phone;
-    @NotNull
-    @Column(length=200)
+    @Column(length=200, nullable=false)
     private String password;
 
     @OneToMany (mappedBy="user", cascade=CascadeType.ALL)
@@ -53,6 +53,9 @@ public class User implements Serializable {
 
     @OneToMany (mappedBy="user", cascade=CascadeType.ALL)
     private Collection<Car> cars;
+
+    @ManyToMany(mappedBy="users", cascade=CascadeType.ALL)
+    private Collection<Group> groups;
 
     /** Creates new instance of User. */
     public User() {}
@@ -155,6 +158,24 @@ public class User implements Serializable {
         if (this.cars == null)
             this.cars = new HashSet();
         this.cars.add(car);
+    }
+
+    public Collection<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(Collection<Group> groups) {
+        this.groups = groups;
+    }
+
+    /**
+     * Add a group to the user's set of groups
+     * @param group to be added
+     */
+    public void addGroup(Group group) {
+        if (this.groups == null)
+            this.groups = new HashSet();
+        this.groups.add(group);
     }
 
     /**

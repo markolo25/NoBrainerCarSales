@@ -43,7 +43,7 @@ public class AddCarBean {
     public void setCar(Car car) {
         this.car = car;
     }
-    
+
 //    public void updateYearsMakesModelsFromVIN() {
 //        this.carSelections.setYearsMakesModelsByVIN(this.testVin);
 //    }
@@ -62,6 +62,8 @@ public class AddCarBean {
 //    }
 
     public void doAddCar() {
+        // TODO: Persist car
+//        this.reverseCarStore.addCarToInventory(this.car);
         System.out.println(this.car);
     }
 

@@ -5,6 +5,8 @@
  */
 package NBCS.EntityClasses;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,12 +21,12 @@ public class ReverseCarStore {
 
    @PersistenceContext(unitName = "csulb.cecs493_NBCS_war_1.0-SNAPSHOTPU")
    private EntityManager em;
-   
+
    /**
     * Creates a request to be added to the buyer's list
-    * 
+    *
     * @param request the request to be added to the database
-    * 
+    *
     * @return request object
     */
    public Request createRequest(Request request) {
@@ -32,4 +34,24 @@ public class ReverseCarStore {
       em.persist(request);
       return request;
    }
+
+   public void registerUser(User user, String groupName) throws UserExistsException{
+        if (null == em.find(User.class, user.getEmail())) {
+            Group group = em.find(Group.class, groupName);
+            if (group == null) {
+                group = new Group(groupName);
+            }
+            user.addGroup(group);
+            group.addUser(user);
+            em.persist(user);
+            em.flush();
+        } else {
+            throw new UserExistsException();
+        }
+   }
+
+    public User find(String userName) {
+        return em.find(User.class, userName);
+    }
+
 }
