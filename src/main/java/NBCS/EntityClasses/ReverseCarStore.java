@@ -32,7 +32,7 @@ public class ReverseCarStore {
       em.persist(request);
       return request;
    }
-<<<<<<< HEAD
+
    public void registerUser(User user, String groupName) throws UserExistsException{
         if (null == em.find(User.class, user.getEmail())) {
             em.persist(user);
@@ -41,10 +41,9 @@ public class ReverseCarStore {
             throw new UserExistsException();
         }
    }
-=======
-   
+
     public User find(String userName) {
         return em.find(User.class, userName);
     }
->>>>>>> origin/snake
+
 }
