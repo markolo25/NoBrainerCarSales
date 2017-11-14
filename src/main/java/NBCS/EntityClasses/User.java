@@ -19,10 +19,10 @@ import javax.validation.constraints.NotNull;
  */
 
 @NamedQueries ({
-    @NamedQuery(name = User.FIND_USER_BY_SCREENNAME, query = "SELECT u FROM "
-            + "User u where u.screenName = :screenName"),
     @NamedQuery(name = User.FIND_USER_BY_EMAIL, query = "SELECT u FROM User u "
-            + "where u.email = :email")
+            + "where u.email = :email"),
+    @NamedQuery(name = User.FIND_USER_BY_SCREENNAME, query = "SELECT u FROM "
+            + "User u where u.screenName = :screenName")
 })
 
 @Entity
@@ -30,10 +30,10 @@ import javax.validation.constraints.NotNull;
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    /** Name of JPQL Query to find User by screen name. */
-    public static final String FIND_USER_BY_SCREENNAME = "User.findUserByscreenName";
     /** Name of JPQL query to find User by email. */
     public static final String FIND_USER_BY_EMAIL =  "User.findUserByEmail";
+    /** Name of JPQL Query to find User by screen name. */
+    public static final String FIND_USER_BY_SCREENNAME = "User.findUserByscreenName";
 
     @Id
     private String email;

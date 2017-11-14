@@ -23,8 +23,9 @@ import javax.validation.constraints.Size;
  */
 
 @NamedQueries ({
-//    @NamedQuery(name = Car.FIND_CAR_BY_SCREENNAME, query = "SELECT c FROM "
-//            + "Car c JOIN c.user u WHERE u.screenName = :screenName"),
+    @NamedQuery(name = Car.FIND_ALL_CARS, query = "SELECT c FROM Car c" ),
+    @NamedQuery(name = Car.FIND_CAR_BY_EMAIL, query = "SELECT c FROM "
+            + "Car c WHERE c.user.email = :email"),
     @NamedQuery(name = Car.FIND_CAR_BY_SCREENNAME, query = "SELECT c FROM "
             + "Car c WHERE c.user.screenName = :screenName"),
     @NamedQuery(name = Car.FIND_CAR_BY_CARYEAR, query = "SELECT c FROM Car c WHERE "
@@ -39,7 +40,11 @@ import javax.validation.constraints.Size;
 public class Car implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    /** Name of JPQL query to find Cars in a User's Inventory. */
+    /** Name of JPQL query to find all Cars. */
+    public static final String FIND_ALL_CARS = "Car.getAll";
+    /** Name of JPQL query to find Cars in a User's Inventory by email. */
+    public static final String FIND_CAR_BY_EMAIL = "Car.findCarByEmail";
+    /** Name of JPQL query to find Cars in a User's Inventory by screen name. */
     public static final String FIND_CAR_BY_SCREENNAME = "Car.findCarByscreenName";
     /** Name of JPQL query to find Cars by year. */
     public static final String FIND_CAR_BY_CARYEAR = "Car.findCarByCarYear";
