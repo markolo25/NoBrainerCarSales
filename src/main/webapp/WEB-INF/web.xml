@@ -19,7 +19,22 @@
     </context-param>
     
     <!-- Security Settings -->
-    
+     <security-constraint>
+        <web-resource-collection>
+            <url-pattern>/account/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>reversecarstore.user</role-name>
+        </auth-constraint>
+	<user-data-constraint>
+            <!-- transport-guarantee can be CONFIDENTIAL, INTEGRAL, or NONE -->
+            <transport-guarantee>NONE</transport-guarantee>
+	</user-data-constraint>
+    </security-constraint>
+    <security-role>
+        <description>ReverseCarStore user</description>
+        <role-name>reversecarstore.user</role-name>
+    </security-role>
     <login-config>
         <auth-method>FORM</auth-method>
         <form-login-config>
