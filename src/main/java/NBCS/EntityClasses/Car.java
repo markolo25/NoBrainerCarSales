@@ -38,7 +38,7 @@ import javax.validation.constraints.Size;
 @Entity
 public class Car implements Serializable {
     private static final long serialVersionUID = 1L;
-    
+
     /** Name of JPQL query to find Cars in a User's Inventory. */
     public static final String FIND_CAR_BY_SCREENNAME = "Car.findCarByscreenName";
     /** Name of JPQL query to find Cars by year. */
@@ -47,7 +47,7 @@ public class Car implements Serializable {
     public static final String FIND_CAR_BY_MAKE = "Car.findCarByMake";
     /** Name of JPQL query to find Cars by model. */
     public static final String FIND_CAR_BY_MODEL = "Car.findCarByModel";
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -66,13 +66,13 @@ public class Car implements Serializable {
     @Column(length = 2000)
     private String description;
     private String status;
-    
+
     @ManyToOne
     private User user;
-    
+
     /** Creates new instance of Car. */
     public Car(){}
-    
+
 
     public Long getId() {
         return id;
@@ -90,11 +90,11 @@ public class Car implements Serializable {
         this.vin = vin;
     }
 
-    public Integer getcarYear() {
+    public Integer getCarYear() {
         return carYear;
     }
 
-    public void setcarYear(Integer carYear) {
+    public void setCarYear(Integer carYear) {
         this.carYear = carYear;
     }
 
@@ -145,7 +145,7 @@ public class Car implements Serializable {
     public void setStatus(String status) {
         this.status = status;
     }
-    
+
     public User getUser() {
         return user;
     }
@@ -163,13 +163,13 @@ public class Car implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case 
+        // TODO: Warning - this method won't work in the case
         //the id fields are not set
         if (!(object instanceof Car)) {
             return false;
         }
         Car other = (Car) object;
-        if ((this.id == null && other.id != null) || 
+        if ((this.id == null && other.id != null) ||
                 (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -178,10 +178,10 @@ public class Car implements Serializable {
 
     @Override
     public String toString() {
-        return "NBCS.EntityClasses.Car[ id=" + id +", vin=" + vin + ", year=" 
-                + carYear + ", make=" + make + ", model=" + model + ", mileage=" 
-                + mileage + ", titleStatus=" + titleStatus + ", descrption=" 
+        return "NBCS.EntityClasses.Car[ id=" + id +", vin=" + vin + ", year="
+                + carYear + ", make=" + make + ", model=" + model + ", mileage="
+                + mileage + ", titleStatus=" + titleStatus + ", descrption="
                 + description + ", status=" + status + "]";
     }
-    
+
 }
