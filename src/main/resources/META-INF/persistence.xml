@@ -5,9 +5,7 @@
         <jta-data-source>jdbc/carstoreDB</jta-data-source>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>
-            <!-- Uncomment for adding dummy data
             <property name="javax.persistence.sql-load-script-source" value="META-INF/insert.sql"/>
-            -->
             <property name="eclipselink.logging.level" value="FINE"/>
             <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
         </properties>
