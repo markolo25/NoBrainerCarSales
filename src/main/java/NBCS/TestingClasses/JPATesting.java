@@ -5,7 +5,9 @@
  */
 package NBCS.TestingClasses;
 
+import NBCS.EntityClasses.Car;
 import NBCS.EntityClasses.Request;
+import NBCS.EntityClasses.User;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -35,6 +37,25 @@ public class JPATesting {
     private void testPersistRequest() {
         // An EntityManager object is used to perform persistence tasks such as
         // starting transactions, persisting objects, creating queries, etc.
+
+        ENTITY_MANAGER.getTransaction().begin();
+        Request request = new Request();
+        request.setMake("PERSISTANCETEST");
+        request.setModel("PERSISTANCETEST");
+        
+        User user = new User();
+        user.setName("PERSISTANCETEST");
+        user.setEmail("PERSISTANCETEST");
+        
+        Car car = new Car();
+        car.setMake("PERSISTANCETEST");
+        car.setModel("PERSISTANCETEST");
+        
+        ENTITY_MANAGER.persist(request);
+        ENTITY_MANAGER.persist(user);
+        ENTITY_MANAGER.persist(car);
+        ENTITY_MANAGER.getTransaction().commit();
+        
 //        ENTITY_MANAGER.getTransaction().begin();
 //        ENTITY_MANAGER.getTransaction().commit();
     }
