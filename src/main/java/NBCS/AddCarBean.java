@@ -5,6 +5,9 @@
  */
 package NBCS;
 
+import NBCS.EntityClasses.Car;
+import NBCS.EntityClasses.ReverseCarStore;
+import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 
@@ -12,85 +15,54 @@ import javax.enterprise.context.RequestScoped;
  *
  * @author Xavier Martinez <xavier.martinez@student.csulb.edu>
  */
-@Named(value = "addCarBean")
+@Named
 @RequestScoped
 public class AddCarBean {
 
-//    private Car car;
+    private Car car;
+    @EJB
+    private ReverseCarStore reverseCarStore;
+
 //    @Inject
 //    private UserBean seller;
-    private String testVin;
-    private String testMake;
-    private String testModel;
-    private String modelsDisabled;
 
-    public String getTestModel() {
-        return testModel;
-    }
-
-    public void setTestModel(String testModel) {
-        this.testModel = testModel;
-    }
-
-    public void setTestMake(String testMake) {
-        this.testMake = testMake;
-    }
-    private Integer testYear;
-
-    private CarSelections carSelections;
+//    private CarSelections carSelections;
 
     /**
      * Creates a new instance of AddCarBean
      */
     public AddCarBean() {
-//        this.car = new Car();
-        this.carSelections = new CarSelections();
-        this.modelsDisabled = "true";
+        this.car = new Car();
+//        this.carSelections = new CarSelections();
     }
 
-    public String getModelsDisabled() {
-        return modelsDisabled;
+    public Car getCar() {
+        return car;
     }
 
-    public void setModelsDisabled(String modelsDisabled) {
-        this.modelsDisabled = modelsDisabled;
+    public void setCar(Car car) {
+        this.car = car;
     }
+    
+//    public void updateYearsMakesModelsFromVIN() {
+//        this.carSelections.setYearsMakesModelsByVIN(this.testVin);
+//    }
 
-    public void updateYearsMakesModelsFromVIN() {
-        this.carSelections.setYearsMakesModelsByVIN(this.testVin);
-    }
+//    public void yearChangeListener(){
+//        this.setMakesDisabled("false");
+//    }
 
-    public void makeChangeListener(){
-        this.carSelections.setModelsByYearAndMake(String.valueOf(this.testYear), testMake);
-        this.modelsDisabled = "false";
-    }
+//    public void makeChangeListener(){
+//        this.setModelsDisabled("false");
+//        this.carSelections.setModelsByYearAndMake(String.valueOf(this.testYear), this.testMake);
+//    }
 
-    public CarSelections getCarSelections() {
-        return carSelections;
-    }
-
-    public Integer getTestYear() {
-        return testYear;
-    }
-
-    public void setTestYear(Integer testYear) {
-        this.testYear = testYear;
-    }
-
-    public String getTestVin() {
-        return testVin;
-    }
-
-    public void setTestVin(String testVin) {
-        this.testVin = testVin;
-    }
+//    public CarSelections getCarSelections() {
+//        return carSelections;
+//    }
 
     public void doAddCar() {
-        System.out.println("VIN: " + this.testVin + " Year: " + this.testYear + " Make: " + this.testMake + " Model: " + this.testModel);
-    }
-
-    public String getTestMake() {
-        return testMake;
+        System.out.println(this.car);
     }
 
 }

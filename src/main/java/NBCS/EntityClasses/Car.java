@@ -65,14 +65,17 @@ public class Car implements Serializable {
     @Size(max = 2000)
     @Column(length = 2000)
     private String description;
+    @Column(name="car_condition")
+    private String condition;
     private String status;
 
     @ManyToOne
     private User user;
 
     /** Creates new instance of Car. */
-    public Car(){}
-
+    public Car() {
+        this.status = "Unsold";
+    }
 
     public Long getId() {
         return id;
@@ -138,6 +141,14 @@ public class Car implements Serializable {
         this.description = description;
     }
 
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
+    }
+
     public String getStatus() {
         return status;
     }
@@ -178,10 +189,7 @@ public class Car implements Serializable {
 
     @Override
     public String toString() {
-        return "NBCS.EntityClasses.Car[ id=" + id +", vin=" + vin + ", year="
-                + carYear + ", make=" + make + ", model=" + model + ", mileage="
-                + mileage + ", titleStatus=" + titleStatus + ", descrption="
-                + description + ", status=" + status + "]";
+        return "Car{" + "id=" + id + ", vin=" + vin + ", carYear=" + carYear + ", make=" + make + ", model=" + model + ", mileage=" + mileage + ", titleStatus=" + titleStatus + ", description=" + description + ", condition=" + condition + ", status=" + status + ", user=" + user + '}';
     }
 
 }
