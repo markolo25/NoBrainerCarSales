@@ -31,82 +31,92 @@ import javax.validation.constraints.NotNull;
 @Table (name = "users")
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
-    
+
     /** Name of JPQL Query to find User by screen name. */
     public static final String FIND_USER_BY_SCREENNAME = "User.findUserByscreenName";
     /** Name of JPQL query to find User by email. */
     public static final String FIND_USER_BY_EMAIL =  "User.findUserByEmail";
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
+    @NotNull
     private String email;
     @NotNull
     private Integer zipCode;
     @Column (unique = true)
     private String screenName;
- 
     private String phone;
-    @Column(length=200, nullable=false)
+    @NotNull
+    @Column(length=200)
     private String password;
-    
+
     @OneToMany (mappedBy="user", cascade=CascadeType.ALL)
     private Collection<Request> requests;
-    
+
     @OneToMany (mappedBy="user", cascade=CascadeType.ALL)
     private Collection<Car> cars;
-    
+
     /** Creates new instance of User. */
     public User() {}
-    
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
-    
+
     public void setName(String name) {
         this.name = name;
     }
-    
+
     public String getEmail() {
         return email;
     }
-    
+
     public void setEmail(String email) {
         this.email = email;
     }
-    
+
     public Integer getZipCode() {
         return zipCode;
     }
-    
+
     public void setZipCode(Integer zipCode) {
         this.zipCode = zipCode;
     }
-    
+
     public String getScreenName() {
     return screenName;
     }
-    
+
     public void setScreenName(String screenName) {
         this.screenName = screenName;
     }
-    
+
     public String getPhone() {
         return phone;
     }
-    
+
     public void setPhone(String phone) {
         this.phone = phone;
     }
-    
+
     public String getPassword() {
         return password;
     }
-    
+
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
     /**
      * gets the requests that this user has created
      * @return a collection of requests that this user created
@@ -122,7 +132,7 @@ public class User implements Serializable {
     public void setRequests(Collection<Request> requests) {
         this.requests = requests;
     }
-    
+
     /**
      * Add a request to the user's set of requests
      * @param request to be added
@@ -132,7 +142,7 @@ public class User implements Serializable {
             this.requests = new HashSet();
         this.requests.add(request);
     }
-    
+
     /**
      * gets the cars that this user has added to inventory
      * @return a collection of cars that this user has in inventory
@@ -148,7 +158,7 @@ public class User implements Serializable {
     public void setCars(Collection<Car> cars) {
         this.cars = cars;
     }
-    
+
     /**
      * Add a car to the user's inventory
      * @param car to be added
@@ -158,18 +168,18 @@ public class User implements Serializable {
             this.cars = new HashSet();
         this.cars.add(car);
     }
-    
+
     /**
      * determines whether or not the information for this book is valid
      * @param confirmPassword the password to be confirmed
-     * @return <code>true</code> if this book has valid information; 
+     * @return <code>true</code> if this book has valid information;
      *         <code>false</code> otherwise
      */
     public boolean isInformationValid(String confirmPassword) {
         return (name != null && email != null && password != null
                  && confirmPassword.equals(password));
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -184,14 +194,14 @@ public class User implements Serializable {
             return false;
         }
         User other = (User) object;
-        return (this.email != null || other.email == null) && 
+        return (this.email != null || other.email == null) &&
                 (this.email == null || this.email.equals(other.email));
     }
-    
+
      @Override
     public String toString() {
         return "User[name=" + name + ", email=" + email + ", zipcode=" + zipCode
                 + ", screeName=" + screenName + ", phone=" + phone + "]";
     }
-    
+
 }
