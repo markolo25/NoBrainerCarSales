@@ -106,17 +106,6 @@ public class User implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-   /**
-     * determines whether or not the information for this book is valid
-     * @param confirmPassword the password to be confirmed
-     * @return <code>true</code> if this book has valid information; 
-     *         <code>false</code> otherwise
-     */
-    public boolean isInformationValid(String confirmPassword) {
-        return (firstName != null && lastName != null
-                 && email != null && password != null
-                 && confirmPassword.equals(password));
-    }
     
     /**
      * gets the requests that this user has created

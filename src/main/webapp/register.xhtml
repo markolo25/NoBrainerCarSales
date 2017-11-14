@@ -15,21 +15,10 @@
                         <legend>Register now!</legend>
                         <ul>
                             <li>
-                                <label for="firstName">First Name</label>
-                                <h:inputText id="firstName" value="#{registration.newUser.firstName}"
-                                             required="true" requiredMessage="Your first name is required"/>
-                                <h:message for="fname" styleClass="message_all" />
-                            </li>
-                            <li>
-                                <label for="middleInitial">Middle Initial</label>
-                                <h:inputText id="middleInitial" value="#{registration.newUser.middleInitial}"/>
-                                <h:message for="middleInitial" styleClass="message_all" />
-                            </li>
-                            <li>
-                                <label for="lastName">Last Name</label>
-                                <h:inputText id="lastName" value="#{registration.newUser.lastName}"
-                                             required="true"  requiredMessage="Your last name is required"/>
-                                <h:message for="lastName" styleClass="message_all" />
+                                <label for="name">Your Name</label>
+                                <h:inputText id="name" value="#{registration.newUser.name}"
+                                             required="true" requiredMessage="Your name is required"/>
+                                <h:message for="name" styleClass="message_all" />
                             </li>
                             <li>
                                 <label for="zipCode">Zip Code</label>
