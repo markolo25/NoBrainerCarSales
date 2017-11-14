@@ -6,8 +6,6 @@ import java.util.HashSet;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -38,13 +36,9 @@ public class User implements Serializable {
     public static final String FIND_USER_BY_EMAIL =  "User.findUserByEmail";
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String email;
     @NotNull
     private String name;
-    @NotNull
-    @Column(unique = true)
-    private String email;
     @NotNull
     private Integer zipCode;
     @Column (unique = true)
@@ -62,14 +56,6 @@ public class User implements Serializable {
 
     /** Creates new instance of User. */
     public User() {}
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
