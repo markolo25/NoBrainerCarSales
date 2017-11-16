@@ -10,7 +10,6 @@ import NBCS.EntityClasses.ReverseCarStore;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
 
 /**
  *
@@ -23,9 +22,6 @@ public class AddCarBean {
     private Car car;
     @EJB
     private ReverseCarStore reverseCarStore;
-
-    @Inject
-    private LoginBean user_session;
 
 //    private CarSelections carSelections;
     /**
@@ -58,7 +54,6 @@ public class AddCarBean {
 //        return carSelections;
 //    }
     public void doAddCar() {
-        this.car.setUser(user_session.getUser());
         car = this.reverseCarStore.addCarToInventory(this.car);
         if (car != null) {
             System.out.println("Successfully added a car.");

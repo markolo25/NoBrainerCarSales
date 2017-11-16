@@ -30,9 +30,6 @@ public class RequestBean {
     private Request newRequest;
     private Map<String,LocalDate> timeoutChoices;
 
-    @Inject
-    private LoginBean user_session;
-
     /**
      * Creates a new instance of RequestBean
      */
@@ -58,7 +55,6 @@ public class RequestBean {
     }
 
     public void doCreateRequest() {
-        this.newRequest.setUser(user_session.getUser());
         newRequest = reverseCarStore.createRequest(newRequest);
         if (newRequest != null) {
             System.out.println("Successfully created a request.");

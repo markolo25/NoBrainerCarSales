@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.enterprise.inject.Produces;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.ServletException;
@@ -22,7 +23,8 @@ import javax.servlet.http.HttpSession;
 public class LoginBean implements Serializable {
 
     private static final long serialVersion = 1L;
-    private static final Logger logger = Logger.getLogger("LoginBean");
+    private static final Logger logger = Logger.getLogger("UserBean");
+    @Produces
     private User user;
 
     @EJB
@@ -44,9 +46,7 @@ public class LoginBean implements Serializable {
     public boolean isUserAuthenticated() {
         boolean isAuth = true;
         if (null == this.user) {
-            FacesContext context = FacesContext.getCurrentInstance();
-            HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-            String userName = request.getRemoteUser();
+            String userName = reverseCarStore.getUsernameFromSession();
             if (userName == null) {
                 isAuth = false;
             } else {
