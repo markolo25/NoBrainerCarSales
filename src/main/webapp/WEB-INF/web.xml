@@ -22,7 +22,7 @@
      <security-constraint>
         <display-name>User functionality</display-name>
         <web-resource-collection>
-            <url-pattern>/faces/actionPages/*</url-pattern>
+            <url-pattern>/actionPages/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>reversecarstore.user</role-name>
@@ -64,10 +64,6 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>/faces/*</url-pattern>
-    </servlet-mapping>
     <!---Servlets End Here -->
 
     <session-config>
@@ -75,9 +71,9 @@
             30
         </session-timeout>
     </session-config>
-    
+
     <!--Homepage is set here -->
     <welcome-file-list>
-        <welcome-file>faces/index.xhtml</welcome-file>
+        <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
 </web-app>
