@@ -27,7 +27,15 @@
             </c:if>
         </ui:define>
         <ui:define name ="content">
-            <p>Hello #{login.user.name}</p>
+            <div class="jumbotron" style="background-color: transparent">
+                <h1 class="display-4">Welcome to No Brainer Car Sales!</h1>
+                <p class="lead">We are a <i>simple secured car store</i> where buyers make requests for the vehicles they want.</p>
+                <hr class="my-4">
+                    <p class="lead">
+                        <a class="btn btn-primary btn-lg" href="authentication/register.xhtml" role="button">Register</a>
+                    </p>
+                </hr>
+            </div>
         </ui:define>
     </ui:composition>
 </html>
