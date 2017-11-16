@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context path="/NBCS">
-    <Realm className="org.apache.catalina.realm.LockOutRealm">
-
-    <Realm className="org.apache.catalina.realm.DataSourceRealm"
-           dataSourceName="jdbc/carstoreDB"
-           roleNameCol="groupname"
-           userCredCol="password"
-           userNameCol="email"
-           userRoleTable="groups_users"
-           userTable="users">
+  <Realm className="org.apache.catalina.realm.LockOutRealm">
+    <Realm className="org.apache.catalina.realm.DataSourceRealm" dataSourceName="jdbc/carstoreDB" roleNameCol="groupname" userCredCol="password" userNameCol="email" userRoleTable="groups_users" userTable="users">
       <!-- see: https://stackoverflow.com/questions/32178822/tomcat-understanding-credentialhandler -->
       <CredentialHandler algorithm="SHA-512" className="org.apache.catalina.realm.MessageDigestCredentialHandler"/>
     </Realm>
