@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -19,10 +20,10 @@ import javax.validation.constraints.NotNull;
  */
 
 @NamedQueries ({
-    @NamedQuery(name = User.FIND_USER_BY_SCREENNAME, query = "SELECT u FROM "
-            + "User u where u.screenName = :screenName"),
     @NamedQuery(name = User.FIND_USER_BY_EMAIL, query = "SELECT u FROM User u "
-            + "where u.email = :email")
+            + "where u.email = :email"),
+    @NamedQuery(name = User.FIND_USER_BY_SCREENNAME, query = "SELECT u FROM "
+            + "User u where u.screenName = :screenName")
 })
 
 @Entity
@@ -30,10 +31,10 @@ import javax.validation.constraints.NotNull;
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    /** Name of JPQL Query to find User by screen name. */
-    public static final String FIND_USER_BY_SCREENNAME = "User.findUserByscreenName";
     /** Name of JPQL query to find User by email. */
     public static final String FIND_USER_BY_EMAIL =  "User.findUserByEmail";
+    /** Name of JPQL Query to find User by screen name. */
+    public static final String FIND_USER_BY_SCREENNAME = "User.findUserByscreenName";
 
     @Id
     private String email;
@@ -44,8 +45,7 @@ public class User implements Serializable {
     @Column (unique = true)
     private String screenName;
     private String phone;
-    @NotNull
-    @Column(length=200)
+    @Column(length=200, nullable=false)
     private String password;
 
     @OneToMany (mappedBy="user", cascade=CascadeType.ALL)
@@ -53,6 +53,9 @@ public class User implements Serializable {
 
     @OneToMany (mappedBy="user", cascade=CascadeType.ALL)
     private Collection<Car> cars;
+
+    @ManyToMany(mappedBy="users", cascade=CascadeType.ALL)
+    private Collection<Group> groups;
 
     /** Creates new instance of User. */
     public User() {}
@@ -155,6 +158,24 @@ public class User implements Serializable {
         if (this.cars == null)
             this.cars = new HashSet();
         this.cars.add(car);
+    }
+
+    public Collection<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(Collection<Group> groups) {
+        this.groups = groups;
+    }
+
+    /**
+     * Add a group to the user's set of groups
+     * @param group to be added
+     */
+    public void addGroup(Group group) {
+        if (this.groups == null)
+            this.groups = new HashSet();
+        this.groups.add(group);
     }
 
     /**

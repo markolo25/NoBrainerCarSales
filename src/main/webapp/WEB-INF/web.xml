@@ -1,9 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+<web-app version="3.1"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <resource-ref>
+        <description>DB Connection</description>
+        <res-ref-name>jdbc/carstoreDB</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+    </resource-ref>
     <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
     </context-param>
+    <context-param>
+        <param-name>javax.faces.WEBAPP_RESOURCES_DIRECTORY</param-name> <!-- SEE: https://jsflive.wordpress.com/2013/04/01/jsf22-config-resource-dir/ -->
+        <param-value>/WEB-INF/resources</param-value>
+    </context-param>
+
+    <!-- Security Settings -->
+     <security-constraint>
+        <display-name>User functionality</display-name>
+        <web-resource-collection>
+            <web-resource-name>user functions</web-resource-name>
+            <description>user role required</description>
+            <url-pattern>/actionPages/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>reverseCarStore.user</role-name>
+        </auth-constraint>
+	<user-data-constraint>
+            <!-- transport-guarantee can be CONFIDENTIAL, INTEGRAL, or NONE -->
+            <transport-guarantee>NONE</transport-guarantee>
+	</user-data-constraint>
+    </security-constraint>
+    <security-role>
+        <description>ReverseCarStore User</description>
+        <role-name>reverseCarStore.user</role-name>
+    </security-role>
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+            <form-login-page>/authentication/login.xhtml</form-login-page>
+            <form-error-page>/authentication/login.xhtml?error=true</form-error-page>
+        </form-login-config>
+    </login-config>
+
+
+    <!-- TODO: Error Destination Pages -->
+
+
+
+
+
+
+
+
     <!---Servlets Start Here -->
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
@@ -15,15 +67,13 @@
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
     <!---Servlets End Here -->
-    <context-param>
-        <param-name>javax.faces.WEBAPP_RESOURCES_DIRECTORY</param-name> <!-- SEE: https://jsflive.wordpress.com/2013/04/01/jsf22-config-resource-dir/ -->
-        <param-value>/WEB-INF/resources</param-value>
-    </context-param>
+
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+
     <!--Homepage is set here -->
     <welcome-file-list>
         <welcome-file>index.xhtml</welcome-file>

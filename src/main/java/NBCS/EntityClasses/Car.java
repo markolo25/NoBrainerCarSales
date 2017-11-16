@@ -23,8 +23,9 @@ import javax.validation.constraints.Size;
  */
 
 @NamedQueries ({
-//    @NamedQuery(name = Car.FIND_CAR_BY_SCREENNAME, query = "SELECT c FROM "
-//            + "Car c JOIN c.user u WHERE u.screenName = :screenName"),
+    @NamedQuery(name = Car.FIND_ALL_CARS, query = "SELECT c FROM Car c" ),
+    @NamedQuery(name = Car.FIND_CAR_BY_EMAIL, query = "SELECT c FROM "
+            + "Car c WHERE c.user.email = :email"),
     @NamedQuery(name = Car.FIND_CAR_BY_SCREENNAME, query = "SELECT c FROM "
             + "Car c WHERE c.user.screenName = :screenName"),
     @NamedQuery(name = Car.FIND_CAR_BY_CARYEAR, query = "SELECT c FROM Car c WHERE "
@@ -39,7 +40,11 @@ import javax.validation.constraints.Size;
 public class Car implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    /** Name of JPQL query to find Cars in a User's Inventory. */
+    /** Name of JPQL query to find all Cars. */
+    public static final String FIND_ALL_CARS = "Car.getAll";
+    /** Name of JPQL query to find Cars in a User's Inventory by email. */
+    public static final String FIND_CAR_BY_EMAIL = "Car.findCarByEmail";
+    /** Name of JPQL query to find Cars in a User's Inventory by screen name. */
     public static final String FIND_CAR_BY_SCREENNAME = "Car.findCarByscreenName";
     /** Name of JPQL query to find Cars by year. */
     public static final String FIND_CAR_BY_CARYEAR = "Car.findCarByCarYear";
@@ -65,14 +70,17 @@ public class Car implements Serializable {
     @Size(max = 2000)
     @Column(length = 2000)
     private String description;
+    @Column(name="car_condition")
+    private String condition;
     private String status;
 
     @ManyToOne
     private User user;
 
     /** Creates new instance of Car. */
-    public Car(){}
-
+    public Car() {
+        this.status = "Unsold";
+    }
 
     public Long getId() {
         return id;
@@ -138,6 +146,14 @@ public class Car implements Serializable {
         this.description = description;
     }
 
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
+    }
+
     public String getStatus() {
         return status;
     }
@@ -178,10 +194,7 @@ public class Car implements Serializable {
 
     @Override
     public String toString() {
-        return "NBCS.EntityClasses.Car[ id=" + id +", vin=" + vin + ", year="
-                + carYear + ", make=" + make + ", model=" + model + ", mileage="
-                + mileage + ", titleStatus=" + titleStatus + ", descrption="
-                + description + ", status=" + status + "]";
+        return "Car{" + "id=" + id + ", vin=" + vin + ", carYear=" + carYear + ", make=" + make + ", model=" + model + ", mileage=" + mileage + ", titleStatus=" + titleStatus + ", description=" + description + ", condition=" + condition + ", status=" + status + ", user=" + user + '}';
     }
 
 }

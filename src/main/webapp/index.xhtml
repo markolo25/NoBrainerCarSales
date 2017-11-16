@@ -1,17 +1,33 @@
 <!DOCTYPE html>
-<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
-                 template="layout.xhtml"
-                 xmlns:ui="http://java.sun.com/jsf/facelets">
-    <ui:define name="title">NBCS</ui:define>
-    <ui:define name="nav-headings">
-        <li class="nav-item active">
-            <a class="nav-link" href="index.xhtml">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="login.xhtml">Sign In</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="request.xhtml">Create Request</a>
-        </li>
-    </ui:define>
-</ui:composition>
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+        xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <ui:composition  template="/WEB-INF/templates/layout.xhtml">
+        <ui:define name="title">NBCS</ui:define>
+        <ui:define name="nav-headings">
+            <li class="nav-item active">
+                <a class="nav-link" href="index.xhtml">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <c:if test="#{loginBean.userAuthenticated}">
+                <li class="nav-item">
+                    <a class="nav-link" href="actionPages/index.xhtml">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <h:commandLink class="nav-link" action="#{loginBean.logout}">Logout</h:commandLink>
+                </li>
+            </c:if>
+            <c:if test="#{!loginBean.userAuthenticated}">
+                <li class="nav-item">
+                    <a class="nav-link" href="actionPages/index.xhtml">Sign In</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="authentication/register.xhtml">Register</a>
+                </li>
+            </c:if>
+        </ui:define>
+        <ui:define name ="content">
+            <p>Hello #{login.user.name}</p>
+        </ui:define>
+    </ui:composition>
+</html>
