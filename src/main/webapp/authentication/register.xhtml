@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+        <ui:composition template="/WEB-INF/templates/layout.xhtml">
+            <ui:define name="title">Registration</ui:define>
+            <ui:define name="nav-headings">
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.xhtml">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../actionPages/index.xhtml">Sign In</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="register.xhtml">Register <span class="sr-only">(current)</span></a>
+                </li>
+            </ui:define>
+            <ui:define name="content">
+                <h3>Register as a user of <i>NBCS</i> to be granted additional functionality.</h3>
+                <div class="card">
+                    <div class="card-body">
+                        <h:form id="registration" autocomplete="off">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <h:inputText id="name" class="form-control" value="#{registration.newUser.name}" required="true" requiredMessage="Your name is required"/>
+                                <small class="form-text text-muted">Required</small>
+                                <h:message for="name" styleClass="text-danger"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="screenName">Screen Name</label>
+                                <h:inputText id="screenName" class="form-control" value="#{registration.newUser.screenName}" required ="true" requiredMessage="Your Screen Name is required" />
+                                <small class="form-text text-muted">Required</small>
+                                <h:message for="screenName" styleClass ="text-danger" />
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <h:inputText id="email" class="form-control" value="#{registration.newUser.email}" required="true"  requiredMessage="Your email address is required"/>
+                                <small class="form-text text-muted">Required</small>
+                                <h:message for="email" styleClass="text-danger" />
+                            </div>
+                            <div class="form-group">
+                                <label for="zipCode">Zip Code</label>
+                                <h:inputText id="zipCode" class="form-control" value="#{registration.newUser.zipCode}" required="true" requiredMessage="Your Zip Code is required"/>
+                                <small class="form-text text-muted">Required</small>
+                                <h:message for="zipCode" styleClass="text-danger" />
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <h:inputText id="phone" class="form-control" value="#{registration.newUser.phone}" required ="false" />
+                                <small class="form-text text-muted">Optional</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <h:inputSecret id="password" class="form-control" value="#{registration.newUser.password}" required="true"  requiredMessage="Your must provide a password" />
+                                <small class="form-text text-muted">Required</small>
+                                <h:message for="password" styleClass="text-danger" />
+                            </div>
+                            <div class="form-group">
+                                <label for="passwordConfirmation">Confirm password</label>
+                                <h:inputSecret id="passwordConfirmation" class="form-control" value="#{registration.passwordConfirmation}" required="true"  requiredMessage="You need to confirm your password">
+                                    <f:validator validatorId="duplicateFieldValidator"/>
+                                    <f:attribute name="field1" value="registration:password"/>
+                                    <f:attribute name="fieldNames" value="Passwords"/>
+                                </h:inputSecret>
+                                <small class="form-text text-muted">Required and must match password entered above</small>
+                                <h:message for="passwordConfirmation" styleClass="text-danger" />
+                            </div>
+                            <div class="form-group">
+                                <div class="row-1">
+                                    <h:commandButton value="Register" action="#{registration.registerUser}" styleClass="btn btn-success" />
+                                </div>
+                                <div class="row-1" style="margin-top: 10px">
+                                    <h:button value="Cancel" outcome="/index" styleClass="btn btn-success" />
+                                </div>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

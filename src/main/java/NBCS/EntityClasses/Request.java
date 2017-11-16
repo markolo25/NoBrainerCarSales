@@ -2,49 +2,57 @@ package NBCS.EntityClasses;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  *
  * @author xaviermartinez
+ * @author Anthony Lopez <Anthony.Lopez@student.csulb.edu>
  */
+
+@NamedQueries ({
+    @NamedQuery(name = Request.FIND_REQUEST_BY_EMAIL, query = "SELECT "
+            + "r from Request r where r.user.email = :email"),
+    @NamedQuery(name = Request.FIND_REQUEST_BY_SCREENNAME, query = "SELECT "
+            + "r from Request r where r.user.screenName = :screenName")
+})
+
 @Entity
 public class Request implements Serializable {
     private static final long serialVersionUID = 1L;
+    
+    /** Name of JPQL query that finds Requests by User email. */
+    public static final String FIND_REQUEST_BY_EMAIL= 
+            "Request.findRequestByEmail";
+    /** Name of JPQL query that finds Requests by User screen name. */
+    public static final String FIND_REQUEST_BY_SCREENNAME = 
+            "Request.findRequestByscreenName";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column
     private String make;
-    @Column
     private String model;
-    @Column
     private Integer yearFrom;
-    @Column
     private Integer yearTo;
-    @Column
     private Double priceLow;
-    @Column
     private Double priceHigh;
-    @Column
     private Integer rangeFromLocation;
-    @Column
     private String titleStatus;
-    @Column
-    private Integer milage;
-    @Column
+    private Integer mileage;
     private String status;
-    @Column
     private LocalDate timeout;
+    
+    @ManyToOne
+    private User user;
 
-    /**
-     * Creates a new instance of Request
-     */
+    /** Creates a new instance of Request. */
     public Request() {
         this.make = "Any";
         this.model = "Any";
@@ -54,7 +62,7 @@ public class Request implements Serializable {
         this.priceHigh = 0.0;
         this.rangeFromLocation = 99;
         this.titleStatus = "Any";
-        this.milage = 0;
+        this.mileage = 0;
         this.timeout = LocalDate.now();
         this.status = "Open";
     }
@@ -150,17 +158,52 @@ public class Request implements Serializable {
         this.titleStatus = titleStatus;
     }
 
-    public Integer getMilage() {
-        return milage;
+    public Integer getMileage() {
+        return mileage;
     }
 
-    public void setMilage(Integer milage) {
-        this.milage = milage;
+    public void setMileage(Integer milage) {
+        this.mileage = milage;
+    }
+    
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+    
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
     }
 
     @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id 
+        //fields are not set
+        if (!(object instanceof Request)) {
+            return false;
+        }
+        Request other = (Request) object;
+        if ((this.id == null && other.id != null) || 
+                (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+    
+    @Override
     public String toString() {
-        return "Request{" + "id=" + id + ", make=" + make + ", model=" + model + ", yearFrom=" + yearFrom + ", yearTo=" + yearTo + ", priceLow=" + priceLow + ", priceHigh=" + priceHigh + ", rangeFromLocation=" + rangeFromLocation + ", titleStatus=" + titleStatus + ", milage=" + milage + ", status=" + status + ", timeout=" + timeout + '}';
+        return "Request{" + "id=" + id + ", make=" + make + ", model=" 
+                + model + ", yearFrom=" + yearFrom + ", yearTo=" + yearTo 
+                + ", priceLow=" + priceLow + ", priceHigh=" + priceHigh 
+                + ", rangeFromLocation=" + rangeFromLocation + ", titleStatus=" 
+                + titleStatus + ", milage=" + mileage + ", status=" + status 
+                + ", timeout=" + timeout + '}';
     }
 
 }

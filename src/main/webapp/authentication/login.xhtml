@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html   lang="en"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <ui:composition  template="/WEB-INF/templates/layout.xhtml">
+        <ui:define name="title">Login</ui:define>
+        <ui:define name="nav-headings">
+            <li class="nav-item">
+                <a class="nav-link" href="../index.xhtml">Home</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Sign In <span class="sr-only">(current)</span></a>
+            </li>
+        </ui:define>
+        <ui:define name="content">
+            <c:if test="#{!empty param['error'] and param['error']}">
+                <p class="danger">There was an error authenticating. You may want to try again</p>
+            </c:if>
+            <form class="form-signin" action="j_security_check" method="POST">
+                <h2 class="form-signin-heading">Please sign in</h2>
+                <label for="username" class="sr-only">Email address</label>
+                <input type="email" name="j_username" id="j_username" class="form-control" placeholder="Email address" required="true" autofocus="true"/>
+                <label for="password" class="sr-only">Password</label>
+                <input type="password" name ="j_password" id="j_password" class="form-control" placeholder="Password" required="true"/>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            </form>
+        </ui:define>
+    </ui:composition>
+</html>
+
