@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Mark Mendoza <markolo25@gmail.com>
  */
-@Named(value = "login")
+@Named
 @SessionScoped
 public class LoginBean implements Serializable {
 

@@ -13,6 +13,7 @@ import java.util.Map;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 
 /**
  *
@@ -23,11 +24,14 @@ import javax.enterprise.context.RequestScoped;
 @Named(value = "requestBean")
 @RequestScoped
 public class RequestBean {
-   
+
     @EJB
     private ReverseCarStore reverseCarStore;
     private Request newRequest;
     private Map<String,LocalDate> timeoutChoices;
+
+    @Inject
+    private LoginBean user_session;
 
     /**
      * Creates a new instance of RequestBean
@@ -52,11 +56,12 @@ public class RequestBean {
     public Map<String, LocalDate> getTimeoutChoices() {
         return timeoutChoices;
     }
-    
+
     public void doCreateRequest() {
-      newRequest = reverseCarStore.createRequest(newRequest);
-         if (newRequest != null) {
+        this.newRequest.setUser(user_session.getUser());
+        newRequest = reverseCarStore.createRequest(newRequest);
+        if (newRequest != null) {
             System.out.println("Successfully created a request.");
-         }
+        }
    }
 }

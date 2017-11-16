@@ -10,6 +10,7 @@ import NBCS.EntityClasses.ReverseCarStore;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 
 /**
  *
@@ -23,11 +24,10 @@ public class AddCarBean {
     @EJB
     private ReverseCarStore reverseCarStore;
 
-//    @Inject
-//    private UserBean seller;
+    @Inject
+    private LoginBean user_session;
 
 //    private CarSelections carSelections;
-
     /**
      * Creates a new instance of AddCarBean
      */
@@ -47,24 +47,22 @@ public class AddCarBean {
 //    public void updateYearsMakesModelsFromVIN() {
 //        this.carSelections.setYearsMakesModelsByVIN(this.testVin);
 //    }
-
 //    public void yearChangeListener(){
 //        this.setMakesDisabled("false");
 //    }
-
 //    public void makeChangeListener(){
 //        this.setModelsDisabled("false");
 //        this.carSelections.setModelsByYearAndMake(String.valueOf(this.testYear), this.testMake);
 //    }
-
 //    public CarSelections getCarSelections() {
 //        return carSelections;
 //    }
-
     public void doAddCar() {
-        // TODO: Persist car
-//        this.reverseCarStore.addCarToInventory(this.car);
-        System.out.println(this.car);
+        this.car.setUser(user_session.getUser());
+        car = this.reverseCarStore.addCarToInventory(this.car);
+        if (car != null) {
+            System.out.println("Successfully added a car.");
+        }
     }
 
 }

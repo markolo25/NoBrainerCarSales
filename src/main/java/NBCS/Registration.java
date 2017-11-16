@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package NBCS;
+
 /**
  *
  * @author David Nguyen <nguyendavid095@gmail.com>
@@ -21,10 +21,9 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
-
 @Named
 @RequestScoped
-public class Registration implements Serializable{
+public class Registration implements Serializable {
 
     private User newUser;
     @EJB
@@ -32,37 +31,37 @@ public class Registration implements Serializable{
 
     private String passwordConfirmation;
 
-    public Registration(){
+    public Registration() {
         newUser = new User();
     }
 
-
-    public String registerUser(){
+    public String registerUser() {
         String result;
-        if(newUser.isInformationValid(passwordConfirmation));
+        if (newUser.isInformationValid(passwordConfirmation));
         String clearText = newUser.getPassword();
         newUser.setPassword(HashPassword.getSHA512Digest(clearText));
-        try{
+        try {
             reverseCarStore.registerUser(newUser, "reverseCarStore.user");
-            result ="success";
-        }
-        catch(UserExistsException uee){
-            result ="register";
+            result = "success";
+        } catch (UserExistsException uee) {
+            result = "register";
         }
         return result;
     }
 
-    public User getNewUser(){
+    public User getNewUser() {
         return newUser;
     }
-    public void setNewUser(User user){
+
+    public void setNewUser(User user) {
         this.newUser = user;
     }
-    public String getPasswordConfirmation(){
+
+    public String getPasswordConfirmation() {
         return passwordConfirmation;
     }
 
-    public void setPasswordConfirmation(String passwordConfirmation){
+    public void setPasswordConfirmation(String passwordConfirmation) {
         this.passwordConfirmation = passwordConfirmation;
     }
 }

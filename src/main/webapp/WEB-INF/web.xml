@@ -22,10 +22,12 @@
      <security-constraint>
         <display-name>User functionality</display-name>
         <web-resource-collection>
+            <web-resource-name>user functions</web-resource-name>
+            <description>user role required</description>
             <url-pattern>/actionPages/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
-            <role-name>reversecarstore.user</role-name>
+            <role-name>reverseCarStore.user</role-name>
         </auth-constraint>
 	<user-data-constraint>
             <!-- transport-guarantee can be CONFIDENTIAL, INTEGRAL, or NONE -->
@@ -33,14 +35,14 @@
 	</user-data-constraint>
     </security-constraint>
     <security-role>
-        <description>ReverseCarStore user</description>
-        <role-name>reversecarstore.user</role-name>
+        <description>ReverseCarStore User</description>
+        <role-name>reverseCarStore.user</role-name>
     </security-role>
     <login-config>
         <auth-method>FORM</auth-method>
         <form-login-config>
-            <form-login-page>/login.xhtml</form-login-page>
-            <form-error-page>/login.xhtml?error=true</form-error-page>
+            <form-login-page>/authentication/login.xhtml</form-login-page>
+            <form-error-page>/authentication/login.xhtml?error=true</form-error-page>
         </form-login-config>
     </login-config>
 
