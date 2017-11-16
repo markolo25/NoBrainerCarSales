@@ -27,7 +27,11 @@
             </c:if>
         </ui:define>
         <ui:define name ="content">
-            <p>Hello #{login.user.name}</p>
+            <h:form>
+            <p>
+                Hello #{loginBean.user.name}
+            </p>
+            </h:form>
         </ui:define>
     </ui:composition>
 </html>
