@@ -7,13 +7,15 @@ package NBCS;
 
 import NBCS.EntityClasses.Car;
 import NBCS.EntityClasses.ReverseCarStore;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 
 /**
- *
+ * 
  * @author Xavier Martinez <xavier.martinez@student.csulb.edu>
+ * @author Mark Mendoza <markolo25@gmail.com>
  */
 @Named
 @RequestScoped
@@ -22,6 +24,7 @@ public class AddCarBean {
     private Car car;
     @EJB
     private ReverseCarStore reverseCarStore;
+    private List<Car> cars;
 
 //    private CarSelections carSelections;
     /**
@@ -60,4 +63,12 @@ public class AddCarBean {
         }
     }
 
-}
+    public List<Car> getCars() {
+        if (cars == null || cars.isEmpty()) {
+            //cars = reverseCarStore.getCars(); //ALL Cars
+            cars = reverseCarStore.getCarsOfUser(); //Cars only of user
+        }
+            return this.cars;
+        }
+
+    }

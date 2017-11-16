@@ -1,5 +1,18 @@
-INSERT INTO groups VALUES ('reversecarstore.user', 'authenticated user only')
+INSERT INTO GROUPS VALUES ('reverseCarStore.user', 'all users of the no brainer car sales')
 
-INSERT INTO users(email, "name", zipCode, screenName, phone, password) VALUES ('TomEE@gmail.com', 'TomEE', '99999', 'TomEE', '2223334444', '3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2')
+INSERT INTO APP.USERS (EMAIL, "NAME", PASSWORD, PHONE, SCREENNAME, ZIPCODE) VALUES ('markolo25@gmail.com', 'mark mendoza', '25016ba7ad01410cc68b65ce51d996fa7f034fb34d505d62fcac68e7bf64fb111e81773bacb551ddb7e285e12e02421153547fdc88ed81927711cf9c5dd9f219', '5623885158', 'markolo25', 90806)
+INSERT INTO APP.USERS (EMAIL, "NAME", PASSWORD, PHONE, SCREENNAME, ZIPCODE) VALUES ('TomEE@gmail.com', 'TomEE', '3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2', '2223334444', 'TomEE', 99999)
 
-INSERT INTO groups_users(email, groupname) VALUES ('TomEE@gmail.com', 'reversecarstore.user')
+INSERT INTO GROUPS_USERS (GROUPNAME, EMAIL) VALUES ('reverseCarStore.user', 'markolo25@gmail.com')
+INSERT INTO GROUPS_USERS (GROUPNAME, EMAIL) VALUES ('reverseCarStore.user', 'TomEE@gmail.com')
+
+
+INSERT INTO CAR (ID, CARYEAR, CAR_CONDITION, DESCRIPTION, MAKE, MILEAGE, MODEL, STATUS, TITLESTATUS, VIN, USER_EMAIL) VALUES (1, 1999, 'Excellent', '', 'Honda', 12345, 'Civic', 'Unsold', 'Clean', '', 'TomEE@gmail.com')
+INSERT INTO CAR (ID, CARYEAR, CAR_CONDITION, DESCRIPTION, MAKE, MILEAGE, MODEL, STATUS, TITLESTATUS, VIN, USER_EMAIL) VALUES (2, 1999, 'Excellent', '', 'Honda', 22222, 'Civic', 'Unsold', 'Clean', '', 'TomEE@gmail.com')
+INSERT INTO CAR (ID, CARYEAR, CAR_CONDITION, DESCRIPTION, MAKE, MILEAGE, MODEL, STATUS, TITLESTATUS, VIN, USER_EMAIL) VALUES (3, 1999, 'Excellent', '', 'Honda', 43215, 'Civic', 'Unsold', 'Clean', '', 'TomEE@gmail.com')
+INSERT INTO CAR (ID, CARYEAR, CAR_CONDITION, DESCRIPTION, MAKE, MILEAGE, MODEL, STATUS, TITLESTATUS, VIN, USER_EMAIL) VALUES (4, 1999, 'Excellent', '', 'Honda', 615221412, 'Civic', 'Unsold', 'Clean', '', 'TomEE@gmail.com')
+
+INSERT INTO CAR (ID, CARYEAR, CAR_CONDITION, DESCRIPTION, MAKE, MILEAGE, MODEL, STATUS, TITLESTATUS, VIN, USER_EMAIL) VALUES (5, 1999, 'Excellent', '', 'Honda', 1, 'Civic', 'Unsold', 'Clean', '', 'markolo25@gmail.com')
+INSERT INTO CAR (ID, CARYEAR, CAR_CONDITION, DESCRIPTION, MAKE, MILEAGE, MODEL, STATUS, TITLESTATUS, VIN, USER_EMAIL) VALUES (6, 1999, 'Excellent', '', 'Bugatti', 2, 'Veyron', 'Unsold', '🔥', '', 'markolo25@gmail.com')
+INSERT INTO CAR (ID, CARYEAR, CAR_CONDITION, DESCRIPTION, MAKE, MILEAGE, MODEL, STATUS, TITLESTATUS, VIN, USER_EMAIL) VALUES (7, 1999, 'Excellent', '', 'Dino', 3, 'Saur', 'Unsold', 'Clean', '', 'markolo25@gmail.com')
+INSERT INTO CAR (ID, CARYEAR, CAR_CONDITION, DESCRIPTION, MAKE, MILEAGE, MODEL, STATUS, TITLESTATUS, VIN, USER_EMAIL) VALUES (8, 1999, 'Excellent', '', 'Chicken', 4, 'Nuggets', 'Unsold', 'Clean', '', 'markolo25@gmail.com')
