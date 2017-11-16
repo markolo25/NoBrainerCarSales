@@ -34,6 +34,11 @@ public class ReverseCarStore {
       em.persist(request);
       return request;
    }
+   
+   public Car createCar(Car car) {
+      em.persist(car);
+      return car;
+   }
 
    public void registerUser(User user, String groupName) throws UserExistsException{
         if (null == em.find(User.class, user.getEmail())) {

@@ -18,7 +18,7 @@
     <!-- Navigation Rules -->
 
     <navigation-rule>
-        <from-view-id>*</from-view-id>
+        <from-view-id></from-view-id>
         <navigation-case>
             <from-action>#{registration.registerUser}</from-action>
             <from-outcome>success</from-outcome>
@@ -30,7 +30,7 @@
             <to-view-id>/register.xhtml</to-view-id>
         </navigation-case>
 
-        <from-view-id>*</from-view-id>
+        <from-view-id></from-view-id>
         <navigation-case>
             <from-outcome>success</from-outcome>
             <to-view-id>/actionPages/request.xhtml</to-view-id>

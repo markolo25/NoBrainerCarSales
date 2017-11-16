@@ -62,9 +62,10 @@ public class AddCarBean {
 //    }
 
     public void doAddCar() {
-        // TODO: Persist car
-//        this.reverseCarStore.addCarToInventory(this.car);
-        System.out.println(this.car);
+        car = reverseCarStore.createCar(car);
+         if (car != null) {
+            System.out.println("Successfully added a car to the inventory.");
+         }
     }
 
 }
