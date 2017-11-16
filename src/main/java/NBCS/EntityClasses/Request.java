@@ -17,8 +17,8 @@ import javax.persistence.NamedQuery;
  */
 
 @NamedQueries ({
-//    @NamedQuery(name = Request.FIND_REQUEST_BY_SCREENNAME, query = "SELECT r "
-//            + "FROM Request r JOIN r.user u where u.screenName = :screenName"),
+    @NamedQuery(name = Request.FIND_REQUEST_BY_EMAIL, query = "SELECT "
+            + "r from Request r where r.user.email = :email"),
     @NamedQuery(name = Request.FIND_REQUEST_BY_SCREENNAME, query = "SELECT "
             + "r from Request r where r.user.screenName = :screenName")
 })
@@ -27,6 +27,9 @@ import javax.persistence.NamedQuery;
 public class Request implements Serializable {
     private static final long serialVersionUID = 1L;
     
+    /** Name of JPQL query that finds Requests by User email. */
+    public static final String FIND_REQUEST_BY_EMAIL= 
+            "Request.findRequestByEmail";
     /** Name of JPQL query that finds Requests by User screen name. */
     public static final String FIND_REQUEST_BY_SCREENNAME = 
             "Request.findRequestByscreenName";
