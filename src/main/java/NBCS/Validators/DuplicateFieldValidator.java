@@ -1,16 +1,16 @@
 /*
  * Licensed under the Academic Free License (AFL 3.0).
  *     http://opensource.org/licenses/AFL-3.0
- * 
+ *
  *  This code is distributed to CSULB students in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE, other than educational.
- * 
+ *
  *  2013-2017 Alvaro Monge <alvaro.monge@csulb.edu>
- * 
+ *
  */
 
-package NBCS;
+package NBCS.Validators;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -59,7 +59,7 @@ public class DuplicateFieldValidator implements Validator {
 
         // Check if the first text is actually entered and compare it with second text.
         if (field1 != null && field1.length() != 0 && !field1.equals(confirm)) {
-            throw new ValidatorException(new FacesMessage(fieldNames + " do not match."));
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, fieldNames + " do not match.", "Must match password entered above."));
         }
     }
 }

@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<!--
+@author David Nguyen <david.nguyen07@student.csulb.edu
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition  template="/WEB-INF/templates/layout.xhtml">
+
+        <ui:define name="title">NBCS - Buyer Dashboard</ui:define>
+        <ui:define name="content">
+            <h:body>
+                <b:container>
+                    <b:panelGrid colSpans="10,2" size="sm">
+                        <b:panel title="My Requests" iconAwesome ="fa-wpforms" look="info" collapsible="false">
+                            <h:outputText value="There should be a bunch of active requests in here!" />
+                            <h:form>
+                                <b:dataTable value="#{requestBean.requests}" var="requests" fixedHeader="true" searching="false"
+                                             scroll-size="700px"
+                                             scroll-x="true"
+                                             responsive="true">
+                                    <b:dataTableColumn value="#{requests.make}" />
+                                    <b:dataTableColumn value="#{requests.model}" />
+                                    <b:dataTableColumn value="#{requests.mileage}" />
+                                    <b:dataTableColumn value="#{requests.titleStatus}"/>
+                                    <b:dataTableColumn value="#{requests.yearFrom} - #{requests.yearTo}" />
+                                    <b:dataTableColumn value="#{requests.priceLow} - #{requests.priceHigh}"/>
+                                    <b:dataTableColumn value="#{requests.status}" />
+                                    <b:dataTableColumn value="#{requests.timeout}" />
+                                </b:dataTable>
+                            </h:form>
+                        </b:panel>
+                        <b:button value="Create Request" look="primary" href="request.xhtml"/>
+                    </b:panelGrid>
+                </b:container>
+            </h:body>
+        </ui:define>
+    </ui:composition>
+</html>

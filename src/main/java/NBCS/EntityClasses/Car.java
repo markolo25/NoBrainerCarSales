@@ -6,6 +6,8 @@
 package NBCS.EntityClasses;
 
 import java.io.Serializable;
+import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,10 +16,13 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
+ * Car encapsulates the information representing a car. Each car is
+ * automatically assigned an identifier.
  *
  * @author Anthony Lopez <Anthony.Lopez@student.csulb.edu>
  */
@@ -76,6 +81,8 @@ public class Car implements Serializable {
 
     @ManyToOne
     private User user;
+    @OneToMany (mappedBy="car", cascade= CascadeType.ALL)
+    private Collection<Response> responses;
 
     /** Creates new instance of Car. */
     public Car() {
@@ -194,7 +201,7 @@ public class Car implements Serializable {
 
     @Override
     public String toString() {
-        return "Car{" + "id=" + id + ", vin=" + vin + ", carYear=" + carYear + ", make=" + make + ", model=" + model + ", mileage=" + mileage + ", titleStatus=" + titleStatus + ", description=" + description + ", condition=" + condition + ", status=" + status + ", user=" + user + '}';
+        return carYear + ", " + make + ", " + model + ", " + mileage + " miles, " + titleStatus + ", " + condition + " condition";
     }
 
 }

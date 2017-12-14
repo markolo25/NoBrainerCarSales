@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<!--
+@author Mark Mendoza <markolo25@gmail.com>
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Inventory Form</title>
+    </h:head>
+    <b:navBar brand="NBCS" brandHref="../index.xhtml" inverse="true">
+       <b:navbarLinks>
+            <b:navLink value="Home" href="../index.xhtml" iconAwesome ="fa-home"></b:navLink>
+            <b:dropMenu value="Buyer View">
+                <b:navLink value="Buyer Page" href="buyer.xhtml"></b:navLink>
+                <b:dropMenu value="Request View">
+                     <b:navLink value="Create Request" href="request.xhtml" iconAwesome="fa-wpforms"></b:navLink>
+                     <b:navLink value="View All Request" href="viewRequest.xhtml" iconAwesome="fa-wpforms"></b:navLink>
+                </b:dropMenu>
+               
+            </b:dropMenu>
+            <b:navLink value="Sell" href="seller.xhtml"></b:navLink>
+            <b:navLink value="My Garage" href="garage.xhtml" iconAwesome ="fa-car"></b:navLink>
+        </b:navbarLinks>
+    </b:navBar>
+    <h:body>
+        <b:container>
+                <h:outputText value="As a Seller, I want to add a car to my inventory, so that I can pin a car from my inventory to a request. Acceptance Criteria: The user should see their uploaded car in their inventory" />
+                <h:form>
+                    <b:dataTable value="#{addCarBean.cars}" var="cars" fixedHeader="true" searching="false"
+                    scroll-size="700px"
+                    scroll-x="true"
+                    responsive="true">
+                    <b:dataTableColumn value="#{cars.carYear}"/>
+                    <b:dataTableColumn value="#{cars.make}"/>
+                    <b:dataTableColumn value="#{cars.model}"/>
+                    <b:dataTableColumn value="#{cars.titleStatus}"/>
+                    <b:dataTableColumn value="#{cars.vins}"/>
+                    </b:dataTable>
+            </h:form>
+        </b:container>
+    </h:body>
+</html>
+          

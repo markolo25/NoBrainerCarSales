@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition  template="/WEB-INF/templates/layout.xhtml">
+        <ui:define name="title">NBCS - Dashboard</ui:define>
+
+        <ui:define name="content">
+            <h1>Overview</h1>
+            <b:row>
+                <b:column>
+                    <b:panel title="Your Requests" collapsible="false">
+                        You have made <b>#{requestBean.numRequestOfUser}</b> request(s).
+                        <f:facet name="footer">
+                            <b:button value="My Requests" class="btn-primary" href="/NBCS/profile/buy/my-requests.xhtml"/>
+                        </f:facet>
+                    </b:panel>
+                </b:column>
+            </b:row>
+            <b:row>
+                <b:column>
+                    <b:panel title="Your Pins" collapsible="false">
+                        You have pinned to <b>_</b> request.
+                        <f:facet name="footer">
+                            <b:button value="My Pins" class="btn-primary" href="#"/>
+                        </f:facet>
+                    </b:panel>
+                </b:column>
+            </b:row>
+            <b:row>
+                <b:column>
+                    <b:panel title="Your Inventory" collapsible="false">
+                        You have <b>#{addCarBean.numCars}</b> car(s) in your garage.
+                        <f:facet name="footer">
+                            <b:button value="My Inventory" class="btn-primary" href="/NBCS/profile/garage/garage.xhtml"/>
+                        </f:facet>
+                    </b:panel>
+                </b:column>
+            </b:row>
+        </ui:define>
+    </ui:composition>
+
+</html>

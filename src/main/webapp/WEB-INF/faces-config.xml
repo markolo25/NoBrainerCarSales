@@ -2,38 +2,53 @@
 <faces-config version="2.2"
               xmlns="http://xmlns.jcp.org/xml/ns/javaee"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
-    <application>
-        <locale-config>
-            <default-locale>en</default-locale>
-            <supported-locale>es</supported-locale>
-        </locale-config>
-        <resource-bundle>
-            <base-name>csulb.cecs493.bookstore.i18n.Text</base-name>
-            <var>msg</var>
-        </resource-bundle>
-    </application>
-
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
 
     <!-- Navigation Rules -->
-
     <navigation-rule>
-        <from-view-id></from-view-id>
+        <from-view-id>/authentication/register.xhtml</from-view-id>
         <navigation-case>
             <from-action>#{registration.registerUser}</from-action>
             <from-outcome>success</from-outcome>
-            <to-view-id>/index.xhtml?registered=true</to-view-id>
-            <redirect/>
+            <to-view-id>/index.xhtml</to-view-id>
+            <redirect>
+                <view-param>
+                    <name>registered</name>
+                    <value>true</value>
+                </view-param>
+            </redirect>
         </navigation-case>
         <navigation-case>
+            <from-action>#{registration.registerUser}</from-action>
             <from-outcome>register</from-outcome>
             <to-view-id>/authentication/register.xhtml</to-view-id>
         </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/profile/garage/add-car.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{addCarBean.doAddCar}</from-action>
+            <from-outcome>Success</from-outcome>
+            <to-view-id>/profile/garage/garage.xhtml?Success=true</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 
-        <from-view-id></from-view-id>
+    <navigation-rule>
+        <from-view-id>/profile/buy/create-request.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{requestBean.doCreateRequest}</from-action>
+            <from-outcome>Success</from-outcome>
+            <to-view-id>/profile/buy/my-requests.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+
+    <navigation-rule>
+        <from-view-id>/authentication/login.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>success</from-outcome>
-            <to-view-id>/actionPages/index.xhtml</to-view-id>
+            <to-view-id>/profile/index.xhtml</to-view-id>
+            <redirect/>
         </navigation-case>
         <navigation-case>
             <from-outcome>login</from-outcome>
@@ -41,4 +56,13 @@
         </navigation-case>
     </navigation-rule>
 
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-action>#{loginBean.logout}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

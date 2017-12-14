@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<!--
+@author David Nguyen <david.nguyen07@student.csulb.edu
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition  template="/WEB-INF/templates/layout.xhtml">
+
+        <ui:define name="title">NBCS - Create a Request</ui:define>
+        <ui:define name="content">
+
+            <h:outputText value="As a Buyer, I want to submit a request for a vehicle, so that I get a response from sellers." />
+            <b:form>
+
+                <div class="form-group">
+                    <label for="make">Make</label>
+                    <h:selectOneMenu class="form-control" id="make" value="#{requestBean.newRequest.make}" required="true" requiredMessage="You must select a make.">
+                        <f:selectItem itemValue="Any" itemLabel="Any"/>
+                        <f:selectItem itemValue="Honda" itemLabel="Honda"/>
+                        <f:selectItem itemValue="Toyota" itemLabel="Toyota"/>
+                        <f:selectItem itemValue="Ford" itemLabel="Ford"/>
+                    </h:selectOneMenu>
+                </div>
+
+                <div class="form-group">
+                    <label for="model">Model</label>
+                    <h:selectOneMenu class="form-control" id="model" value="#{requestBean.newRequest.model}" required="true" requiredMessage="You must select a model.">
+                        <f:selectItem itemValue="Any" itemLabel="Any"/>
+                        <f:selectItem itemValue="Civic" itemLabel="Civic"/>
+                        <f:selectItem itemValue="Prius" itemLabel="Prius"/>
+                        <f:selectItem itemValue="Focus" itemLabel="Focus"/>
+                    </h:selectOneMenu>
+                </div>
+
+                <div class="form-group">
+                    <div class="row" style="padding-left: 14px">
+                        <div class="col">
+                            <label for="yearFrom">Year From</label>
+                            <h:selectOneMenu class="form-control" id="yearFrom" value="#{requestBean.newRequest.yearFrom}" converter="javax.faces.Integer">
+                                <f:selectItem itemValue="1980" itemLabel="1980"/>
+                                <f:selectItem itemValue="1990" itemLabel="1990"/>
+                                <f:selectItem itemValue="2000" itemLabel="2000"/>
+                                <f:selectItem itemValue="2010" itemLabel="2010"/>
+                            </h:selectOneMenu>
+                        </div>
+                        <div class="col">
+                            <label for="yearTo">Year To</label>
+                            <h:selectOneMenu class="form-control" id="yearTo" value="#{requestBean.newRequest.yearTo}" converter="javax.faces.Integer">
+                                <f:selectItem itemValue="1980" itemLabel="1980"/>
+                                <f:selectItem itemValue="1990" itemLabel="1990"/>
+                                <f:selectItem itemValue="2000" itemLabel="2000"/>
+                                <f:selectItem itemValue="2010" itemLabel="2010"/>
+                            </h:selectOneMenu>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row" style="padding-left: 14px">
+                        <div class="col" >
+                            <label for="priceLow">Price Minimum</label>
+                            <h:selectOneMenu class="form-control" id="priceLow" value="#{requestBean.newRequest.priceLow}" converter="javax.faces.Double">
+                                <f:selectItem itemValue="0.00" itemLabel="Any Price"/>
+                                <f:selectItem itemValue="1000.00" itemLabel="$1000"/>
+                                <f:selectItem itemValue="2000.00" itemLabel="$2000"/>
+                                <f:selectItem itemValue="3000.00" itemLabel="$3000"/>
+                            </h:selectOneMenu>
+                        </div>
+                        <div class="col">
+                            <label for="priceHigh">Price Maximum</label>
+                            <h:selectOneMenu class="form-control" id="priceHigh" value="#{requestBean.newRequest.priceHigh}" converter="javax.faces.Double">
+                                <f:selectItem itemValue="0.00" itemLabel="Any Price"/>
+                                <f:selectItem itemValue="1000.00" itemLabel="$1000"/>
+                                <f:selectItem itemValue="2000.00" itemLabel="$2000"/>
+                                <f:selectItem itemValue="3000.00" itemLabel="$3000"/>
+                            </h:selectOneMenu>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="rangeFromLocation">Vehicle Within</label>
+                    <h:selectOneMenu class="form-control" id="rangeFromLocation" value="#{requestBean.newRequest.rangeFromLocation}" converter="javax.faces.Integer">
+                        <f:selectItem itemValue="5" itemLabel="5 Miles"/>
+                        <f:selectItem itemValue="10" itemLabel="10 Miiles"/>
+                        <f:selectItem itemValue="15" itemLabel="20 Miles"/>
+                        <f:selectItem itemValue="99" itemLabel="Any Distance"/>
+                    </h:selectOneMenu>
+                </div>
+
+                <div class="form-group">
+                    <label for="titleStatus">Title Status</label>
+                    <h:selectOneMenu class="form-control" id="titleStatus" value="#{requestBean.newRequest.titleStatus}">
+                        <f:selectItem itemValue="Any" itemLabel="Any"/>
+                        <f:selectItem itemValue="Clean" itemLabel="Clean Title"/>
+                        <f:selectItem itemValue="Salvage" itemLabel="Salvage Title"/>
+                    </h:selectOneMenu>
+                </div>
+
+                <div class="form-group">
+                    <label for="milage">Milage</label>
+                    <h:selectOneMenu class="form-control" id="milage" value="#{requestBean.newRequest.mileage}" converter="javax.faces.Integer">
+                        <f:selectItem itemValue="0" itemLabel="Any"/>
+                        <f:selectItem itemValue="10000" itemLabel="Under 10,000 Miles"/>
+                        <f:selectItem itemValue="20000" itemLabel="Under 20,000 Miles"/>
+                        <f:selectItem itemValue="30000" itemLabel="Under 30,000 Miles"/>
+                    </h:selectOneMenu>
+                </div>
+
+                <div class="form-group">
+                    <label for="timeout">Timeout</label>
+                    <h:selectOneMenu class="form-control" id="timeout" value="#{requestBean.newRequest.timeout}" converter="localDateFacesConverter">
+                        <f:selectItems value="#{requestBean.timeoutChoices}"/>
+                    </h:selectOneMenu>
+                </div>
+
+                <h:commandButton class="btn btn-primary" action="#{requestBean.doCreateRequest}" value="Submit Request"/>
+            </b:form>
+
+        </ui:define>
+    </ui:composition>
+</html>

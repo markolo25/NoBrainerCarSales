@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <b:navbarLinks>
+        <c:if test="#{loginBean.userAuthenticated}">
+            <b:navLink value="Dashboard" href="/NBCS/profile/index.xhtml" iconAwesome ="fa-home"/>
+            <b:dropMenu value="Buy">
+                <b:navLink value="Create Request" href="/NBCS/profile/buy/create-request.xhtml" icon-awesome="fa-ticket"/>
+                <b:navLink value="My Requests" href="/NBCS/profile/buy/my-requests.xhtml" iconAwesome="fa-wpforms"/>
+            </b:dropMenu>
+            <b:dropMenu value="Sell">
+                <b:navLink value="Open Requests" href="/NBCS/profile/sell/open-requests.xhtml" icon-awesome="fa-paper-plane"/>
+                <b:navLink value="My Pins" href="#" icon-awesome="fa-thumb-tack"/>
+            </b:dropMenu>
+            <b:navLink value="My Garage" href="/NBCS/profile/garage/garage.xhtml" iconAwesome ="fa-car"/>
+            <b:navbarLinks pull="right"><b:navLink value="    " href="#"></b:navLink></b:navbarLinks>
+            <b:navbarLinks pull="right">
+                <b:form class="navbar-form">
+                    <b:commandButton action="#{loginBean.logout}" class="btn btn-info" value="Logout"/>
+                </b:form>
+            </b:navbarLinks>
+        </c:if>
+        <c:if test="#{!loginBean.userAuthenticated}" >
+            <b:navLink value="Home" href="/NBCS/index.xhtml" iconAwesome ="fa-home"/>
+            <b:navLink value="Sign In" href="/NBCS/profile/index.xhtml"/>
+            <b:navLink value="Register" href="/NBCS/authentication/register.xhtml"/>
+        </c:if>
+    </b:navbarLinks>
+
+</html>

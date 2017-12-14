@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Mark Mendoza <markolo25@gmail>
+-->
+<!DOCTYPE html>
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:b="http://bootsfaces.net/ui"
+        xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition  template="/WEB-INF/templates/layout.xhtml">
+        <ui:define name="title">NBCS - Your Garage</ui:define>
+        <ui:define name="content">
+            <b:row>
+                <b:column col-sm="6" col-md="4">
+                    <b:thumbnail style="background-color: green;">
+                        <a href="add-car.xhtml"><b:image library="images" name="addACar.jpg"/></a>
+
+                        <f:facet name="caption">
+                        </f:facet>
+                    </b:thumbnail>
+                </b:column>
+
+
+                <h:form>
+                    <ui:repeat value="#{addCarBean.cars}" var="cars" varStatus = "status">
+
+                        <b:column col-sm="6" col-md="4">
+                            <b:thumbnail>
+                                <img src="https://placeimg.com/300/200/tech" alt="Image of Car"/>
+                                <f:facet name="caption">
+                                    <h3>#{cars.make}  #{cars.model}</h3>
+                                    <h4>#{cars.carYear}</h4>
+                                    <h5>#{cars.condition}</h5>
+                                    <h5>#{cars.description}</h5>
+                                </f:facet>
+                            </b:thumbnail>
+                        </b:column>
+
+                    </ui:repeat>
+                </h:form>
+            </b:row>
+
+        </ui:define>
+    </ui:composition>
+</html>

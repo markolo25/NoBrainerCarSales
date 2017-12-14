@@ -2,40 +2,37 @@
 <html   xmlns="http://www.w3.org/1999/xhtml"
         xmlns:ui="http://java.sun.com/jsf/facelets"
         xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-        xmlns:h="http://xmlns.jcp.org/jsf/html">
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:b="http://bootsfaces.net/ui">
     <ui:composition  template="/WEB-INF/templates/layout.xhtml">
-        <ui:define name="title">NBCS</ui:define>
-        <ui:define name="nav-headings">
-            <li class="nav-item active">
-                <a class="nav-link" href="index.xhtml">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <c:if test="#{loginBean.userAuthenticated}">
-                <li class="nav-item">
-                    <a class="nav-link" href="actionPages/index.xhtml">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <h:commandLink class="nav-link" action="#{loginBean.logout}">Logout</h:commandLink>
-                </li>
-            </c:if>
-            <c:if test="#{!loginBean.userAuthenticated}">
-                <li class="nav-item">
-                    <a class="nav-link" href="actionPages/index.xhtml">Sign In</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="authentication/register.xhtml">Register</a>
-                </li>
-            </c:if>
-        </ui:define>
+        <ui:define name="title">NBCS - Welcome Page</ui:define>
         <ui:define name ="content">
-            <div class="jumbotron" style="background-color: transparent">
-                <h1 class="display-4">Welcome to No Brainer Car Sales!</h1>
-                <p class="lead">We are a <i>simple secured car store</i> where buyers make requests for the vehicles they want.</p>
-                <hr class="my-4">
-                    <p class="lead">
-                        <a class="btn btn-primary btn-lg" href="authentication/register.xhtml" role="button">Register</a>
-                    </p>
-                </hr>
-            </div>
+            <b:jumbotron style="background-color: transparent">
+                <c:choose>
+                    <c:when test="#{param['registered']}">
+                        <h1 class="display-4">Thank you for registering!</h1>
+                        <hr class="my-4">
+                            <p class="lead">
+                                <a class="btn btn-primary btn-lg" href="profile/index.xhtml" role="button">Sign In</a>
+                            </p>
+                        </hr>
+                    </c:when>
+                    <c:otherwise>
+                        <h1>Welcome to No Brainer Car Sales!</h1>
+                        <p class="lead">We are a <i>simple secured car store</i> where buyers make requests for the vehicles they want.</p>
+                        <hr>
+                            <p class="lead">
+                                <c:if test="#{!loginBean.userAuthenticated}">
+                                    <b:button class="btn-primary btn-lg" href="/NBCS/authentication/register.xhtml" value="Register"/>
+                                </c:if>
+                                <c:if test="#{loginBean.userAuthenticated}">
+                                    <b:button class="btn-primary btn-lg" href="/NBCS/profile/index.xhtml" value="Dashboard"/>
+                                </c:if>
+                            </p>
+                        </hr>
+                    </c:otherwise>
+                </c:choose>
+            </b:jumbotron>
         </ui:define>
     </ui:composition>
 </html>

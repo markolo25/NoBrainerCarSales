@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
@@ -8,77 +9,76 @@
         <ui:composition template="/WEB-INF/templates/layout.xhtml">
             <ui:define name="title">Registration</ui:define>
             <ui:define name="nav-headings">
-                <li class="nav-item">
-                    <a class="nav-link" href="../index.xhtml">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../actionPages/index.xhtml">Sign In</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="register.xhtml">Register <span class="sr-only">(current)</span></a>
-                </li>
+                <b:navLink value="Sign In" href="/NBCS/profile/index.xhtml"/>
+                <b:navLink value="Register" href="/NBCS/authentication/register.xhtml" active="true"/>
             </ui:define>
             <ui:define name="content">
-                <h3>Register as a user of <i>NBCS</i> to be granted additional functionality.</h3>
-                <div class="card">
-                    <div class="card-body">
-                        <h:form id="registration" autocomplete="off">
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <h:inputText id="name" class="form-control" value="#{registration.newUser.name}" required="true" requiredMessage="Your name is required"/>
-                                <small class="form-text text-muted">Required</small>
-                                <h:message for="name" styleClass="text-danger"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="screenName">Screen Name</label>
-                                <h:inputText id="screenName" class="form-control" value="#{registration.newUser.screenName}" required ="true" requiredMessage="Your Screen Name is required" />
-                                <small class="form-text text-muted">Required</small>
-                                <h:message for="screenName" styleClass ="text-danger" />
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email Address</label>
-                                <h:inputText id="email" class="form-control" value="#{registration.newUser.email}" required="true"  requiredMessage="Your email address is required"/>
-                                <small class="form-text text-muted">Required</small>
-                                <h:message for="email" styleClass="text-danger" />
-                            </div>
-                            <div class="form-group">
-                                <label for="zipCode">Zip Code</label>
-                                <h:inputText id="zipCode" class="form-control" value="#{registration.newUser.zipCode}" required="true" requiredMessage="Your Zip Code is required"/>
-                                <small class="form-text text-muted">Required</small>
-                                <h:message for="zipCode" styleClass="text-danger" />
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Phone Number</label>
-                                <h:inputText id="phone" class="form-control" value="#{registration.newUser.phone}" required ="false" />
-                                <small class="form-text text-muted">Optional</small>
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <h:inputSecret id="password" class="form-control" value="#{registration.newUser.password}" required="true"  requiredMessage="Your must provide a password" />
-                                <small class="form-text text-muted">Required</small>
-                                <h:message for="password" styleClass="text-danger" />
-                            </div>
-                            <div class="form-group">
-                                <label for="passwordConfirmation">Confirm password</label>
-                                <h:inputSecret id="passwordConfirmation" class="form-control" value="#{registration.passwordConfirmation}" required="true"  requiredMessage="You need to confirm your password">
-                                    <f:validator validatorId="duplicateFieldValidator"/>
-                                    <f:attribute name="field1" value="registration:password"/>
-                                    <f:attribute name="fieldNames" value="Passwords"/>
-                                </h:inputSecret>
-                                <small class="form-text text-muted">Required and must match password entered above</small>
-                                <h:message for="passwordConfirmation" styleClass="text-danger" />
-                            </div>
-                            <div class="form-group">
-                                <div class="row-1">
-                                    <h:commandButton value="Register" action="#{registration.registerUser}" styleClass="btn btn-success" />
-                                </div>
-                                <div class="row-1" style="margin-top: 10px">
-                                    <h:button value="Cancel" outcome="/index" styleClass="btn btn-success" />
-                                </div>
-                            </div>
-                        </h:form>
-                    </div>
-                </div>
+                <h2>Registration</h2>
+                <b:panel>
+                    <b:form id="registration">
+                        <b:formGroup id="name-group">
+                            <b:inputText id="name" class="form-control" value="#{registration.newUser.name}" placeholder="TomEE" label="Name" required="true" required-message="Name cannot be empty.">
+                                <f:validator validatorId="registrationNameValidator"/>
+                                <f:ajax event="blur" execute="name" render="name-error"/>
+                            </b:inputText>
+                            <span class="help-block">Must be greater than 3 characters, less than 20 characters, and does not contain `~!@#$%^&amp;*()_+={[}]|\;:'",&lt;.&gt;/?</span>
+                            <b:message id="name-error" for="name"/>
+                        </b:formGroup>
+                        <b:formGroup>
+                            <b:inputText id="screenName" class="form-control" value="#{registration.newUser.screenName}" validator="#{registrationScreenNameValidator.validate}" placeholder="TomEERocks" label="Screen Name" required ="true" required-message="Screen Name cannot be empty.">
+                                <f:ajax event="blur" execute="screenName" render="screenName-error"/>
+                            </b:inputText>
+                            <span class="help-block">Must be greater than 3 characters, less than 20 characters, and does not contain `~!@#$%^&amp;*()_+={[}]|\;:'",&lt;.&gt;/?</span>
+                            <b:message id="screenName-error" for="screenName"/>
+                        </b:formGroup>
+                        <b:formGroup>
+                            <b:inputText id="email" class="form-control" value="#{registration.newUser.email}" validator="#{registrationEmailValidator.validate}" placeholder="TomEE@Apache.com" label="Email Address" required="true"  required-message="Email address cannot be empty.">
+                                <f:ajax event="blur" execute="email" render="email-error"/>
+                            </b:inputText>
+                            <b:message id="email-error" for="@previous"/>
+                        </b:formGroup>
+                        <b:formGroup>
+                            <b:inputText id="zipCode" class="form-control" value="#{registration.newUser.zipCode}" converter-message="Must be a positive 5 digit number." placeholder="90815" label="Zip Code" required="true" required-message="Zip Code cannot be empty.">
+                                <f:validator validatorId="zipCodeValidator"/>
+                                <f:ajax event="blur" execute="zipCode" render="zipcode-error"/>
+                            </b:inputText>
+                            <span class="help-block">Must be a 5 digit number.</span>
+                            <b:message id="zipcode-error" for="zipCode"/>
+                        </b:formGroup>
+                        <b:formGroup>
+                            <b:inputText id="phone" class="form-control" value="#{registration.newUser.phone}" label="Phone Number" placeholder="123-456-7890" required="false"/>
+                        </b:formGroup>
+                        <b:formGroup>
+                            <b:inputSecret id="password" class="form-control" value="#{registration.newUser.password}" label="Password" required="true"  requiredMessage="Password cannot be empty.">
+                                <f:validator validatorId="passwordValidator"/>
+                                <f:ajax event="blur" render="password-error"/>
+                            </b:inputSecret>
+                            <span class="help-block">Must be at least 8 characters, at least 1 letter and 1 number.</span>
+                            <b:message id="password-error" for="password"/>
+                        </b:formGroup>
+                        <b:formGroup>
+                            <b:inputSecret id="passwordConfirmation" class="form-control" value="#{registration.passwordConfirmation}" label="Confirm Password" required="true"  requiredMessage="Password confirmation cannot be empty.">
+                                <f:validator validatorId="duplicateFieldValidator"/>
+                                <f:attribute name="field1" value="registration:password"/>
+                                <f:attribute name="fieldNames" value="Passwords"/>
+                                <f:ajax event="blur" execute="passwordConfirmation password" render="password-confirmation-error"/>
+                            </b:inputSecret>
+                            <b:message id="password-confirmation-error" for="passwordConfirmation"/>
+                        </b:formGroup>
+                        <b:formGroup>
+                            <b:row>
+                                <b:column col-md="1">
+                                    <b:commandButton value="Register" action="#{registration.registerUser}" look="primary" style="width: 90px"/>
+                                </b:column>
+                            </b:row>
+                            <b:row style="margin-top: 10px">
+                                <b:column col-md="1">
+                                    <b:button value="Cancel" outcome="register" look="primary" style="width: 90px"/>
+                                </b:column>
+                            </b:row>
+                        </b:formGroup>
+                    </b:form>
+                </b:panel>
             </ui:define>
         </ui:composition>
     </h:body>

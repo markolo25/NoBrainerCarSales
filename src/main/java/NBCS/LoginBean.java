@@ -15,7 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ *LoginBean encapsulates the services that allow the user to login.
+ * 
  * @author Mark Mendoza <markolo25@gmail.com>
  */
 @Named
@@ -23,7 +24,7 @@ import javax.servlet.http.HttpSession;
 public class LoginBean implements Serializable {
 
     private static final long serialVersion = 1L;
-    private static final Logger logger = Logger.getLogger("UserBean");
+    private static final Logger LOGGER = Logger.getLogger("UserBean");
     @Produces
     private User user;
 
@@ -31,7 +32,7 @@ public class LoginBean implements Serializable {
     ReverseCarStore reverseCarStore;
 
     /**
-     * Creates a new instance of LoginBean
+     * Creates a new instance of LoginBean.
      */
     public LoginBean() {
         user = null;
@@ -53,7 +54,7 @@ public class LoginBean implements Serializable {
                 this.user = reverseCarStore.find(userName);
                 isAuth = (this.user != null);
                 if (isAuth) {
-                    logger.log(Level.SEVERE, "UserIdentiy::isUserAuthenticated: Changed session, so now userIdentiy object has user=authenticated user");
+                    LOGGER.log(Level.SEVERE, "UserIdentiy::isUserAuthenticated: Changed session, so now userIdentiy object has user=authenticated user");
                 }
             }
         }
@@ -75,7 +76,7 @@ public class LoginBean implements Serializable {
             user = null;
             result = "success";
         } catch (ServletException ex) {
-            logger.log(Level.SEVERE, null, ex);
+            LOGGER.log(Level.SEVERE, null, ex);
         } finally {
             HttpSession session = request.getSession(false);
             if (session != null) {
@@ -87,6 +88,8 @@ public class LoginBean implements Serializable {
 
     /* Encapsulation*/
     /**
+     * The user that's currently being edited.
+     * 
      * @return the user
      */
     public User getUser() {
@@ -94,6 +97,8 @@ public class LoginBean implements Serializable {
     }
 
     /**
+     * The setter for the user that is to be submitted via the form.
+     * 
      * @param user
      */
     public void setUser(User user) {

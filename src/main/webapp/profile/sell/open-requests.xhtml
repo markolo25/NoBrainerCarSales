@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:b="http://bootsfaces.net/ui"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <ui:composition  template="/WEB-INF/templates/layout.xhtml">
+        <ui:define name="title">NBCS - Open Requests</ui:define>
+        <ui:define name="content">
+            <b:modal id="amodal" title="Pin A Car">
+                <c:if test="#{sellerBean.hasCars}">
+                    <b:form>
+                        <b:formGroup>
+                            <b:selectOneMenu value="#{sellerBean.pinChoice}" label="Choose a Car">
+                                <f:selectItems value="#{sellerBean.carsList}"/>
+                            </b:selectOneMenu>
+                            <b:inputText value="#{sellerBean.pinPrice}" label="Set a price"/>
+                        </b:formGroup>
+                        <b:commandButton action="#{sellerBean.doCreateResponse()}" look="primary" value="Confirm Pin"/>
+                    </b:form>
+                </c:if>
+                <c:if test="#{!sellerBean.hasCars}">
+                    <b:button value="Add a Car" look="info" href="/NBCS/profile/garage/addCar.xhtml"/>
+                </c:if>
+                <f:facet name="footer">
+                    <b:button value="close" dismiss="modal" onclick="return false;" />
+                </f:facet>
+            </b:modal>
+            <b:panel title="Open Requests" iconAwesome ="fa-paper-plane" look="info"  collapsible="false">
+                <h:form>
+                    <b:dataTable value="#{sellerBean.openRequests}" var="requests" searching="false"
+                                 scroll-size="700px"
+                                 scroll-x="true"
+                                 responsive="true">
+                        <b:dataTableColumn value="#{requests.make}" />
+                        <b:dataTableColumn value="#{requests.model}" />
+                        <b:dataTableColumn value="#{requests.mileage}" />
+                        <b:dataTableColumn value="#{requests.titleStatus}"/>
+                        <b:dataTableColumn value="#{requests.yearFrom}" />
+                        <b:dataTableColumn value="#{requests.yearTo}" />
+                        <b:dataTableColumn value="#{requests.priceLow}"/>
+                        <b:dataTableColumn value="#{requests.priceHigh}"/>
+                        <b:dataTableColumn value="#{requests.status}" />
+                        <b:dataTableColumn label="" orderable="false">
+                            <b:commandButton value="Pin" look="primary" ajax="true" oncomplete="$('#amodal').modal('show');" onclick="ajax:sellerBean.setRequest(requests)">
+                            </b:commandButton>
+                        </b:dataTableColumn>
+                    </b:dataTable>
+                </h:form>
+            </b:panel>
+        </ui:define>
+    </ui:composition>
+</html>
