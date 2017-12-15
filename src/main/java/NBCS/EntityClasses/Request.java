@@ -13,42 +13,52 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
-
 /**
- * Request encapsulates the information representing a request. Each request
- * is automatically assigned an identifier.
+ * Request encapsulates the information representing a request. Each request is
+ * automatically assigned an identifier.
  *
  * @author Xavier Martinez <xavier.martinez@student.csulb.edu>
  * @author Anthony Lopez <Anthony.Lopez@student.csulb.edu>
  */
-
-@NamedQueries ({
+@NamedQueries({
     @NamedQuery(name = Request.FIND_ALL_REQUESTS, query = "SELECT "
-            + "r from Request r"),
+            + "r from Request r")
+    ,
     @NamedQuery(name = Request.FIND_ALL_REQUESTS_BY_STATUS, query = "SELECT "
-            + "r from Request r where r.status = :status "),
+            + "r from Request r where r.status = :status ")
+    ,
     @NamedQuery(name = Request.FIND_REQUEST_BY_EMAIL, query = "SELECT "
-            + "r from Request r where r.user.email = :email"),
+            + "r from Request r where r.user.email = :email")
+    ,
     @NamedQuery(name = Request.FIND_REQUEST_BY_ID, query = "SELECT "
             + "r from Request r where r.id = :id")
 })
 
 @Entity
 public class Request implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
-    /** Name of JPQL query that finds all Requests. */
-    public static final String FIND_ALL_REQUESTS =
-            "Request.findAllRequests";
-    /** Name of JPQL query that finds all Requests by status. */
-    public static final String FIND_ALL_REQUESTS_BY_STATUS =
-            "Request.findAllRequestsByStatus";
-    /** Name of JPQL query that finds Requests by User email. */
-    public static final String FIND_REQUEST_BY_EMAIL=
-            "Request.findRequestByEmail";
-    /** Name of JPQL query that finds Requests by id. */
-    public static final String FIND_REQUEST_BY_ID=
-            "Request.findRequestByID";
+    /**
+     * Name of JPQL query that finds all Requests.
+     */
+    public static final String FIND_ALL_REQUESTS
+            = "Request.findAllRequests";
+    /**
+     * Name of JPQL query that finds all Requests by status.
+     */
+    public static final String FIND_ALL_REQUESTS_BY_STATUS
+            = "Request.findAllRequestsByStatus";
+    /**
+     * Name of JPQL query that finds Requests by User email.
+     */
+    public static final String FIND_REQUEST_BY_EMAIL
+            = "Request.findRequestByEmail";
+    /**
+     * Name of JPQL query that finds Requests by id.
+     */
+    public static final String FIND_REQUEST_BY_ID
+            = "Request.findRequestByID";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -67,10 +77,12 @@ public class Request implements Serializable {
 
     @ManyToOne
     private User user;
-    @OneToMany (mappedBy="request", cascade= CascadeType.ALL)
+    @OneToMany(mappedBy = "request", cascade = CascadeType.ALL)
     private Collection<Response> responses;
 
-    /** Creates a new instance of Request. */
+    /**
+     * Creates a new instance of Request.
+     */
     public Request() {
         this.make = "Any";
         this.model = "Any";
@@ -87,6 +99,7 @@ public class Request implements Serializable {
 
     /**
      * gets the id of this request
+     *
      * @return the integer representing the id
      */
     public Integer getId() {
@@ -95,6 +108,7 @@ public class Request implements Serializable {
 
     /**
      * sets the id of this request
+     *
      * @param id the integer representing the id
      */
     public void setId(Integer id) {
@@ -103,6 +117,7 @@ public class Request implements Serializable {
 
     /**
      * gets the status of this request.
+     *
      * @return the string representing the status
      */
     public String getStatus() {
@@ -111,6 +126,7 @@ public class Request implements Serializable {
 
     /**
      * sets the status for this request
+     *
      * @param status the string representing the status
      */
     public void setStatus(String status) {
@@ -119,6 +135,7 @@ public class Request implements Serializable {
 
     /**
      * gets the make for this request
+     *
      * @return the string representing the make
      */
     public String getMake() {
@@ -127,6 +144,7 @@ public class Request implements Serializable {
 
     /**
      * sets the make for this request
+     *
      * @param make the string representing the make
      */
     public void setMake(String make) {
@@ -135,6 +153,7 @@ public class Request implements Serializable {
 
     /**
      * gets the model for this request
+     *
      * @return the string representing the model
      */
     public String getModel() {
@@ -143,6 +162,7 @@ public class Request implements Serializable {
 
     /**
      * sets the model for this request
+     *
      * @param model the string representing the model
      */
     public void setModel(String model) {
@@ -151,6 +171,7 @@ public class Request implements Serializable {
 
     /**
      * gets the minimum price for this request
+     *
      * @return the double representing the minimum price
      */
     public Double getPriceLow() {
@@ -159,6 +180,7 @@ public class Request implements Serializable {
 
     /**
      * sets the minimum price for this request
+     *
      * @param priceLow the double representing the minimum price
      */
     public void setPriceLow(Double priceLow) {
@@ -167,6 +189,7 @@ public class Request implements Serializable {
 
     /**
      * gets the minimum year for this request
+     *
      * @return the integer representing the minimum year
      */
     public Integer getYearFrom() {
@@ -175,6 +198,7 @@ public class Request implements Serializable {
 
     /**
      * sets the minimum year for this request
+     *
      * @param yearFrom the integer representing the minimum year
      */
     public void setYearFrom(Integer yearFrom) {
@@ -183,6 +207,7 @@ public class Request implements Serializable {
 
     /**
      * gets the maximum year for this request
+     *
      * @return the integer representing the maximum year
      */
     public Integer getYearTo() {
@@ -191,6 +216,7 @@ public class Request implements Serializable {
 
     /**
      * sets the maximum year for this request
+     *
      * @param yearTo the integer representing the maximum year
      */
     public void setYearTo(Integer yearTo) {
@@ -199,6 +225,7 @@ public class Request implements Serializable {
 
     /**
      * gets the maximum price for this request
+     *
      * @return the double representing the maximum price
      */
     public Double getPriceHigh() {
@@ -207,6 +234,7 @@ public class Request implements Serializable {
 
     /**
      * sets the maximum price for this request
+     *
      * @param priceHigh the double representing the maximum price
      */
     public void setPriceHigh(Double priceHigh) {
@@ -215,6 +243,7 @@ public class Request implements Serializable {
 
     /**
      * gets the range from the user's location for this request
+     *
      * @return the integer representing the amount of distance from the user
      */
     public Integer getRangeFromLocation() {
@@ -223,6 +252,7 @@ public class Request implements Serializable {
 
     /**
      * sets the range from the user's location for this request
+     *
      * @param rangeFromLocation the integer representing the amount of distance
      * from the user
      */
@@ -232,6 +262,7 @@ public class Request implements Serializable {
 
     /**
      * gets the timeout of this request
+     *
      * @return the localdate representing the amount of time before timeout
      */
     public LocalDate getTimeout() {
@@ -240,7 +271,9 @@ public class Request implements Serializable {
 
     /**
      * sets the timeout of this request.
-     * @param timeout the localdate representing the amount of time before timeout
+     *
+     * @param timeout the localdate representing the amount of time before
+     * timeout
      */
     public void setTimeout(LocalDate timeout) {
         this.timeout = timeout;
@@ -248,6 +281,7 @@ public class Request implements Serializable {
 
     /**
      * gets the title status of this request
+     *
      * @return the string representing the title status
      */
     public String getTitleStatus() {
@@ -256,6 +290,7 @@ public class Request implements Serializable {
 
     /**
      * set the title status of this request
+     *
      * @param titleStatus the string representing the title status
      */
     public void setTitleStatus(String titleStatus) {
@@ -264,6 +299,7 @@ public class Request implements Serializable {
 
     /**
      * gets the mileage of this request.
+     *
      * @return the integer representing the mileage
      */
     public Integer getMileage() {
@@ -272,6 +308,7 @@ public class Request implements Serializable {
 
     /**
      * sets the mileage of this request
+     *
      * @param milage the integer representing the mileage
      */
     public void setMileage(Integer milage) {
@@ -280,6 +317,7 @@ public class Request implements Serializable {
 
     /**
      * gets the user of this request
+     *
      * @return the user associated with this request
      */
     public User getUser() {
@@ -288,6 +326,7 @@ public class Request implements Serializable {
 
     /**
      * sets the user to this request
+     *
      * @param user the user to be assigned to this request
      */
     public void setUser(User user) {
@@ -309,8 +348,8 @@ public class Request implements Serializable {
             return false;
         }
         Request other = (Request) object;
-        if ((this.id == null && other.id != null) ||
-                (this.id != null && !this.id.equals(other.id))) {
+        if ((this.id == null && other.id != null)
+                || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;

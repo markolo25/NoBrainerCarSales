@@ -13,9 +13,11 @@ import javax.faces.convert.FacesConverter;
 
 /**
  * Faces converter for support of LocalDate
+ * @author Xavier Martinez <xavier.martinez@student.csulb.edu>
  */
 @FacesConverter(value="localDateFacesConverter")
 public class LocalDateFacesConverter implements javax.faces.convert.Converter {
+    // Based on example from https://stackoverflow.com/questions/34883270/how-to-use-java-time-zoneddatetime-localdatetime-in-pcalendar
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {

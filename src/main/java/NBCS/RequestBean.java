@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package NBCS;
 
 import NBCS.EntityClasses.Request;
@@ -90,9 +85,9 @@ public class RequestBean {
         return result;
     }
 
-
     /**
      * Get list of All requests from ejb
+     *
      * @return list of all requests
      */
     public List<Request> getRequests() {
@@ -104,6 +99,7 @@ public class RequestBean {
 
     /**
      * Get List of Requests for a User
+     *
      * @return list of requests that belong to a user
      */
     public List<Request> getRequestOfUser() {
@@ -113,6 +109,10 @@ public class RequestBean {
         return this.requests;
     }
 
+    /**
+     * Get the total number of requests made by a user
+     * @return the total number of requests
+     */
     public Integer getNumRequestOfUser() {
         if (numRequestOfUser == null) {
             numRequestOfUser = getRequestOfUser().size();

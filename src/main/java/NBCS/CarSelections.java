@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * THIS CLASS IS IN PROGRESS...
+ *
  */
 package NBCS;
 
@@ -22,7 +21,7 @@ import javax.ws.rs.core.Response;
 
 
 /**
- *
+ * 
  * @author Xavier Martinez <xavier.martinez@student.csulb.edu>
  */
 public class CarSelections {

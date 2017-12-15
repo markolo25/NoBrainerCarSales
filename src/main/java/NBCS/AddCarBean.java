@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package NBCS;
 
 import NBCS.EntityClasses.Car;
@@ -15,7 +10,8 @@ import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 
 /**
- * AddCarBean encapsulates the services that allow a user to add a car to their garage.
+ * AddCarBean encapsulates the services that allow a user to add a car to their
+ * garage.
  *
  * @author Xavier Martinez <xavier.martinez@student.csulb.edu>
  * @author Mark Mendoza <markolo25@gmail.com>
@@ -32,14 +28,13 @@ public class AddCarBean {
     private List<Car> cars;
     private Integer numCars;
 
-//    private CarSelections carSelections;
     /**
      * Creates a new instance of AddCarBean.
      */
     public AddCarBean() {
         this.car = new Car();
-//        this.carSelections = new CarSelections();
     }
+
     /**
      * The car that's currently being edited.
      *
@@ -48,6 +43,7 @@ public class AddCarBean {
     public Car getCar() {
         return car;
     }
+
     /**
      * The setter for the car that is to be submitted via the form.
      *
@@ -57,19 +53,11 @@ public class AddCarBean {
         this.car = car;
     }
 
-//    public void updateYearsMakesModelsFromVIN() {
-//        this.carSelections.setYearsMakesModelsByVIN(this.testVin);
-//    }
-//    public void yearChangeListener(){
-//        this.setMakesDisabled("false");
-//    }
-//    public void makeChangeListener(){
-//        this.setModelsDisabled("false");
-//        this.carSelections.setModelsByYearAndMake(String.valueOf(this.testYear), this.testMake);
-//    }
-//    public CarSelections getCarSelections() {
-//        return carSelections;
-//    }
+    /**
+     * Persist car into database through EJB
+     *
+     * @return "Success"/"Failure"
+     */
     public String doAddCar() {
         String result = "Failure";
         car = this.reverseCarStore.addCarToInventory(this.car);
@@ -79,6 +67,7 @@ public class AddCarBean {
         result = "Success";
         return result;
     }
+
     /**
      * The collection of cars in a user's garage.
      *
@@ -89,9 +78,14 @@ public class AddCarBean {
             //cars = reverseCarStore.getCars(); //ALL Cars
             cars = reverseCarStore.getCarsOfUser(); //Cars only of user
         }
-            return this.cars;
+        return this.cars;
     }
 
+    /**
+     * Obtain the number of cars in a user's garage
+     *
+     * @return number of cars
+     */
     public Integer getNumCars() {
         if (numCars == null) {
             numCars = getCars().size();
@@ -99,4 +93,4 @@ public class AddCarBean {
         return this.numCars;
     }
 
-    }
+}

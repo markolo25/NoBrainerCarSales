@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
- *LoginBean encapsulates the services that allow the user to login.
- * 
+ * LoginBean encapsulates the services that allow the user to login.
+ *
  * @author Mark Mendoza <markolo25@gmail.com>
  */
 @Named
@@ -89,7 +89,7 @@ public class LoginBean implements Serializable {
     /* Encapsulation*/
     /**
      * The user that's currently being edited.
-     * 
+     *
      * @return the user
      */
     public User getUser() {
@@ -98,7 +98,7 @@ public class LoginBean implements Serializable {
 
     /**
      * The setter for the user that is to be submitted via the form.
-     * 
+     *
      * @param user
      */
     public void setUser(User user) {

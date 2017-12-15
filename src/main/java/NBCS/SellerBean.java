@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package NBCS;
 
 import NBCS.EntityClasses.Car;
@@ -15,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -23,10 +17,11 @@ import javax.inject.Named;
  * SellerBean encapsulates the services that define a seller.
  *
  * @author Anthony Lopez <Anthony.Lopez@student.csulb.edu>
+ * @author Xavier Martinez <xavier.martinez@student.csulb.edu>
  */
 @Named
 @ViewScoped
-public class SellerBean implements Serializable{
+public class SellerBean implements Serializable {
 
     @EJB
     private ReverseCarStore reverseCarStore;
@@ -37,14 +32,16 @@ public class SellerBean implements Serializable{
     private double pinPrice;
     private Car pinChoice;
     private Request request;
-    private Map<String,Car> carsList;
+    private Map<String, Car> carsList;
 
+    /**
+     * Initialize the class variables (for use in seller views)
+     */
     @PostConstruct
     private void intialize() {
         List<Request> sitewideRequests = reverseCarStore.getAllRequests();
         List<Request> userRequests = reverseCarStore.getRequestsOfUser();
         sitewideRequests.removeAll(userRequests);
-//        pinnedCars = reverseCarStore.getPinnedCars();
         openRequests = sitewideRequests;
         hasCars = false;
         cars = reverseCarStore.getCarsOfUser();
@@ -57,39 +54,74 @@ public class SellerBean implements Serializable{
         }
     }
 
+    /**
+     * Get the price set for the pin
+     * @return the price
+     */
     public double getPinPrice() {
         return pinPrice;
     }
 
+    /**
+     * Set the price for the pin
+     * @param pinPrice
+     */
     public void setPinPrice(double pinPrice) {
         this.pinPrice = pinPrice;
     }
 
+    /**
+     * Test for a user having cars in their inventory
+     * @return boolean true/false whether the user has cars in their inventory
+     */
     public Boolean getHasCars() {
         return hasCars;
     }
 
+    /**
+     * Get a Map of Key: Car.toString(), Value: Car pairs of the user
+     * @return the map
+     */
     public Map<String, Car> getCarsList() {
         return carsList;
     }
 
-
+    /**
+     * Get a list of open requests in the system
+     * @return the list of open requests
+     */
     public List<Request> getOpenRequests() {
         return openRequests;
     }
 
+    /**
+     * Get the car that the user chose to pin
+     * @return
+     */
     public Car getPinChoice() {
         return pinChoice;
     }
 
+    /**
+     * Set the car that the user will pin
+     * @param pinChoice
+     */
     public void setPinChoice(Car pinChoice) {
         this.pinChoice = pinChoice;
     }
 
+    /**
+     * Get the request to be pinned to
+     * @return the request
+     */
     public Request getRequest() {
         return request;
     }
 
+    /**
+     * Set the request to be pinned to
+     * @param request
+     */
     public void setRequest(Request request) {
         this.request = request;
     }
@@ -112,6 +144,9 @@ public class SellerBean implements Serializable{
         return this.cars;
     }
 
+    /**
+     * Persist the pin through the EJB
+     */
     public void doCreateResponse() {
         reverseCarStore.createResponse(pinChoice, request, pinPrice);
     }

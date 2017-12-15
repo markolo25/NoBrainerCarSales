@@ -14,7 +14,7 @@
         </ui:define>
         <ui:define name="content">
             <h2>Sign in to <i>NBCS</i></h2>
-            <b:form id="login" onsubmit="document.getElementById('login').action='j_security_check';">
+            <b:form id="login" onsubmit="document.getElementById('login').action = 'j_security_check';">
                 <b:formGroup>
                     <b:inputText type="email" name="j_username" id="j_username" label="Email Address" placeholder="Email address" required="true" required-message="Email address cannot be empty.">
                         <f:validateLength minimum="1"/>

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package NBCS.EntityClasses;
 
 import java.util.List;
@@ -21,13 +16,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.persistence.TypedQuery;
 
 /**
- * ReverseCarStore is a stateless EJB that encapsulates the basic reverse
- * car store services. Such services involve creating a request, adding a car
- * to the inventory, retrieving a list of cars from the inventory and etc.
+ * ReverseCarStore is a stateless EJB that encapsulates the basic reverse car
+ * store services. Such services involve creating a request, adding a car to the
+ * inventory, retrieving a list of cars from the inventory and etc.
  *
  * @author Chanon Chantaduly <chanon.chantaduly@student.csulb.edu>
  * @author Anthony Lopez <anthony.lopez@student.csulb.edu>
  * @author Mark Mendoza <markolo25@gmail.com>
+ * @author Xavier Martinez <xavier.martinez@student.csulb.edu>
  */
 @Stateless
 @RolesAllowed({"reverseCarStore.user"})
@@ -41,6 +37,7 @@ public class ReverseCarStore {
     /**
      * creates a request to be added to the buyer's list. Only a registered user
      * is allowed.
+     *
      * @param request the request to be added to the database
      * @return request object
      */
@@ -65,6 +62,7 @@ public class ReverseCarStore {
 
     /**
      * adds a car to the user's inventory. Only a registered user is allowed.
+     *
      * @param car the car to be added to the inventory
      * @return the car object
      */
@@ -89,6 +87,7 @@ public class ReverseCarStore {
 
     /**
      * registers a new user to the application. Anyone is allowed to do this.
+     *
      * @param user the user to be added to the database
      * @param groupName the groupname to be assigned to the user
      * @throws UserExistsException the exception thrown if a user exists
@@ -172,6 +171,7 @@ public class ReverseCarStore {
 
     /**
      * gets the list of all cars currently in the car database owned by a user
+     *
      * @author Mark Mendoza <markolo25@gmail.com>
      * @return the list of Cars in the Inventory belonging to user
      */
@@ -195,6 +195,7 @@ public class ReverseCarStore {
 
     /**
      * Gets all requests from entity manager
+     *
      * @return return list of all requests
      */
     @PermitAll
@@ -203,7 +204,6 @@ public class ReverseCarStore {
         TypedQuery<Request> query = em.createNamedQuery(Request.FIND_ALL_REQUESTS, Request.class);
         return query.getResultList();
     }
-
 
     /**
      * @author Mark Mendoza <markolo25@gmail.com>
@@ -228,6 +228,11 @@ public class ReverseCarStore {
         return query.getResultList();
     }
 
+    /**
+     * Get the pins of the system
+     *
+     * @return the pins
+     */
     @PermitAll
     @TransactionAttribute(TransactionAttributeType.SUPPORTS)
     public List<Response> getActiveRequests() {
@@ -248,9 +253,10 @@ public class ReverseCarStore {
     }
 
     /**
+     * Persist a response (pin) into the database
      *
-     * @param pin
-     * @param request
+     * @param pin the car being pinned
+     * @param request the request being pinned to
      */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     @PermitAll

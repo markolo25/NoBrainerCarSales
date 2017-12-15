@@ -1,13 +1,19 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Licensed under the Academic Free License (AFL 3.0).
+ *     http://opensource.org/licenses/AFL-3.0
+ *
+ *  This code is distributed to CSULB students in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE, other than educational.
+ *
+ *  2013-2017 Alvaro Monge <alvaro.monge@csulb.edu>
+ *
  */
 package NBCS.EntityClasses;
 
 /**
  *
- * @author nguye
+ * @author Alvaro Monge <alvaro.monge@csulb.edu>
  */
 public class UserExistsException extends Exception {
 

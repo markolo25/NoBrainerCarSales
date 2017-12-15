@@ -10,8 +10,13 @@ import java.time.LocalDate;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
+/**
+ * JPA converter for support of LocalDate
+ * @author Xavier Martinez <xavier.martinez@student.csulb.edu>
+ */
 @Converter(autoApply = true)
 public class LocalDatePersitenceConverter implements AttributeConverter<LocalDate, Date> {
+    // Based on example from https://www.thoughts-on-java.org/persist-localdate-localdatetime-jpa/
 
     @Override
     public Date convertToDatabaseColumn(LocalDate locDate) {

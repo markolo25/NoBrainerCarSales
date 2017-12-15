@@ -1,13 +1,13 @@
 /*
  * Licensed under the Academic Free License (AFL 3.0).
  *     http://opensource.org/licenses/AFL-3.0
- * 
+ *
  *  This code is distributed to CSULB students in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE, other than educational.
- * 
+ *
  *  2013-2017 Alvaro Monge <alvaro.monge@csulb.edu>
- * 
+ *
  */
 
 
@@ -30,7 +30,7 @@ import javax.persistence.Table;
  * It maintains a collection of users and thus all users in a group will have
  * the same role and thus share be authorized to have the same permissions.
  * It's possible for a user to be part of many groups.
- * 
+ *
  * @author Alvaro Monge <alvaro.monge@csulb.edu>
  */
 @Entity(name="UserGroup")
@@ -40,12 +40,12 @@ import javax.persistence.Table;
 })
 public class Group implements Serializable {
     private static final long serialVersionUID = 1L;
-    
+
     /**
      * Name of JPQL query to retrieve the Group given its name
      */
     public static final String FIND_GROUP_BY_USERNAME = "Group.findGroupByName";
-    
+
     @Id
     private String name;
     private String description;
@@ -56,7 +56,7 @@ public class Group implements Serializable {
     private Collection<User> users;
 
     /**
-     * 
+     *
      */
     public Group() { }
 
@@ -77,7 +77,7 @@ public class Group implements Serializable {
     }
 
     /**
-     * sets the name of this group 
+     * sets the name of this group
      * @param name is the string that is to be the name of this group
      */
     public void setName(String name) {
@@ -153,5 +153,5 @@ public class Group implements Serializable {
         return sb.toString();
 
     }
-    
+
 }

@@ -15,16 +15,12 @@ Mark Mendoza <markolo25@gmail>
                 <b:column col-sm="6" col-md="4">
                     <b:thumbnail style="background-color: green;">
                         <a href="add-car.xhtml"><b:image library="images" name="addACar.jpg"/></a>
-
                         <f:facet name="caption">
                         </f:facet>
                     </b:thumbnail>
                 </b:column>
-
-
                 <h:form>
                     <ui:repeat value="#{addCarBean.cars}" var="cars" varStatus = "status">
-
                         <b:column col-sm="6" col-md="4">
                             <b:thumbnail>
                                 <img src="https://placeimg.com/300/200/tech" alt="Image of Car"/>
@@ -36,11 +32,9 @@ Mark Mendoza <markolo25@gmail>
                                 </f:facet>
                             </b:thumbnail>
                         </b:column>
-
                     </ui:repeat>
                 </h:form>
             </b:row>
-
         </ui:define>
     </ui:composition>
 </html>
